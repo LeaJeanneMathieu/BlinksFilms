@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact – Les Beaux Arts du Ghetto</title>
+  <link rel="stylesheet" href="style-contact.css">
+</head>
+<body>
+  <!-- Fond matrix discret + voile -->
+  <canvas id="matrixbg" aria-hidden="true"></canvas>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <main class="contact">
+    <header class="head">
+      <h1>Contact</h1>
+      <p class="intro">Remplissez ce formulaire pour obtenir un devis personnalisé pour votre projet vidéo ou photo.</p>
+    </header>
+
+    <section class="grid centered-wrap">
+      <!-- FORMULAIRE EN ÉTAPES -->
+      <form id="contactForm" class="card form" autocomplete="on">
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off">
+
+        <!-- ÉTAPE 1 : Identité -->
+        <fieldset class="step" data-step="1">
+          <legend>Qui êtes-vous ?</legend>
+          <label><span>Nom / Structure</span>
+            <input type="text" name="name" required placeholder="Votre nom">
+          </label>
+          <div class="row">
+            <label><span>Email</span>
+              <input type="email" name="email" required placeholder="vous@exemple.com">
+            </label>
+            <label><span>Téléphone (optionnel)</span>
+              <input type="tel" name="phone" placeholder="+33...">
+            </label>
+          </div>
+          <label><span>Réseaux (lien)</span>
+            <input type="url" name="socials" placeholder="https://instagram.com/...">
+          </label>
+        </fieldset>
+
+        <!-- ÉTAPE 2 : Types & infos clés -->
+        <fieldset class="step" data-step="2">
+          <legend>Le projet</legend>
+
+          <label><span>Type de projet (vous pouvez cocher plusieurs)</span>
+            <div class="row checks tight" id="ptypeWrap">
+              <label><input type="checkbox" name="ptype" value="Musique" data-block="musique"> Musique</label>
+              <label><input type="checkbox" name="ptype" value="Photo" data-block="photo"> Photo</label>
+              <label><input type="checkbox" name="ptype" value="Événementiel" data-block="event"> Événementiel</label>
+              <label><input type="checkbox" name="ptype" value="Publicité" data-block="pub"> Publicité</label>
+              <label><input type="checkbox" name="ptype" value="YouTube / Réseaux" data-block="youtube"> YouTube / Réseaux</label>
+              <label><input type="checkbox" name="ptype" value="Autre" data-block="autre"> Autre</label>
+            </div>
+          </label>
+
+          <div class="row">
+            <label><span>Nom du projet / événement</span>
+              <input type="text" name="project" placeholder="Titre / nom">
+            </label>
+            <label><span>Ville / Lieu</span>
+              <input type="text" name="location" placeholder="Paris, Lyon…">
+            </label>
+          </div>
+
+          <div class="row">
+            <label><span>Budget (indicatif)</span>
+              <select name="budget">
+                <option>À définir</option>
+                <option>&lt; 1 000 €</option>
+                <option>1 000 – 3 000 €</option>
+                <option>3 000 – 8 000 €</option>
+                <option>&gt; 8 000 €</option>
+              </select>
+            </label>
+            <label><span>Date de tournage souhaitée</span>
+              <input type="date" name="shootDate">
+            </label>
+          </div>
+
+          <div class="row">
+            <label><span>Références (lien)</span>
+              <input type="url" name="refs" placeholder="https://... moodboard / vidéo">
+            </label>
+            <label><span>Durée finale souhaitée</span>
+              <select name="length">
+                <option>À définir</option>
+                <option>&lt; 30 s</option>
+                <option>30–60 s</option>
+                <option>1–3 min</option>
+                <option>3–5 min</option>
+                <option>&gt; 5 min</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- ÉTAPE 3 : Diffusion & formats (toujours visibles) -->
+        <fieldset class="step" data-step="3">
+          <legend>Diffusion & formats</legend>
+          <label><span>Où sera diffusé ?</span>
+            <div class="row checks">
+              <label><input type="checkbox" name="dist" value="Instagram / TikTok"> Instagram / TikTok</label>
+              <label><input type="checkbox" name="dist" value="YouTube"> YouTube</label>
+              <label><input type="checkbox" name="dist" value="Site web"> Site web</label>
+              <label><input type="checkbox" name="dist" value="TV / Cinéma"> TV / Cinéma</label>
+            </div>
+          </label>
+          <label><span>Formats livrables (vidéo)</span>
+            <div class="row checks">
+              <label><input type="checkbox" name="format" value="16:9"> 16:9 (horizontal)</label>
+              <label><input type="checkbox" name="format" value="9:16"> 9:16 (vertical)</label>
+              <label><input type="checkbox" name="format" value="1:1"> 1:1 (carré)</label>
+            </div>
+          </label>
+
+          <label><span>Options supplémentaires</span>
+            <div class="row checks">
+              <label><input type="checkbox" name="add" value="Photos promotionnelles"> Photos promotionnelles</label>
+            </div>
+            <p class="hint">Photos en haute qualité prises pendant le tournage – idéales pour la promo.</p>
+          </label>
+        </fieldset>
+
+        <!-- ÉTAPE 4 : Détails spécifiques (affichés au fur et à mesure) -->
+        <fieldset class="step" data-step="4">
+          <legend>Détails spécifiques</legend>
+
+          <div id="block-musique" class="ptype-block" hidden>
+            <label><span>Lien d’écoute (musique)</span>
+              <input type="url" name="musicLink" placeholder="Spotify / Drive / WeTransfer">
+            </label>
+            <label><span>Musique / Licences</span>
+              <select name="music">
+                <option>À définir</option>
+                <option>Piste fournie par vous</option>
+                <option>À composer</option>
+                <option>Bibliothèque / Licence</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="block-photo" class="ptype-block" hidden>
+            <label><span>Type de séance photo</span>
+              <input type="text" name="photoType" placeholder="Portrait, produit, événement...">
+            </label>
+          </div>
+
+          <div id="block-event" class="ptype-block" hidden>
+            <div class="row">
+              <label><span>Date de l’événement</span>
+                <input type="date" name="eventDate">
+              </label>
+              <label><span>Nb personnes (approx.)</span>
+                <input type="number" name="people" min="1" step="1" placeholder="50">
+              </label>
+            </div>
+            <label><span>Couverture souhaitée</span>
+              <div class="row checks">
+                <label><input type="checkbox" name="eventFmt" value="Vlog"> Vlog</label>
+                <label><input type="checkbox" name="eventFmt" value="Aftermovie"> Aftermovie</label>
+                <label><input type="checkbox" name="eventFmt" value="Interview"> Interview</label>
+              </div>
+            </label>
+          </div>
+
+          <div id="block-pub" class="ptype-block" hidden>
+            <label><span>Objectifs</span>
+              <input type="text" name="goals" placeholder="Lancement produit, image de marque…">
+            </label>
+            <label><span>Durée spot</span>
+              <div class="row checks">
+                <label><input type="radio" name="dur" value="15s"> 15s</label>
+                <label><input type="radio" name="dur" value="30s"> 30s</label>
+                <label><input type="radio" name="dur" value="1min"> 1 min</label>
+                <label><input type="radio" name="dur" value="2min"> 2 min</label>
+              </div>
+            </label>
+          </div>
+
+          <div id="block-youtube" class="ptype-block" hidden>
+            <div class="row">
+              <label><span>Format principal</span>
+                <div class="row checks">
+                  <label><input type="radio" name="ytFormat" value="16:9"> 16:9 YouTube</label>
+                  <label><input type="radio" name="ytFormat" value="9:16"> 9:16 Réseaux</label>
+                </div>
+              </label>
+              <label><span>Nombre de vidéos</span>
+                <input type="number" name="ytCount" min="1" step="1" placeholder="1">
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÉTAPE 5 : Message & consent -->
+        <fieldset class="step" data-step="5">
+          <legend>Dernier détail</legend>
+          <label><span>Message</span>
+            <textarea name="message" rows="6" required placeholder="Parlez-moi de l’idée, du timing, des références…"></textarea>
+          </label>
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>J’accepte d’être recontacté au sujet de ma demande.</span>
+          </label>
+        </fieldset>
+
+        <!-- NAV STEPS -->
+        <div class="steps-nav">
+          <button type="button" class="btn ghost" id="prevBtn">Précédent</button>
+          <div class="steps-indicator"><span id="stepNow">1</span>/5</div>
+          <button type="button" class="btn" id="nextBtn">Étape suivante</button>
+          <button type="submit" class="btn primary" id="sendBtn" hidden>Envoyer</button>
+        </div>
+
+        <p class="note">Astuce : vous pouvez revenir en arrière à tout moment.</p>
+      </form>
+
+      <!-- CONTACTS DIRECTS -->
+      <aside class="card aside">
+        <h2>Contacts directs</h2>
+        <ul class="links">
+          <li>
+            <span class="ico mail" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 .5l8 5 8-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <a href="mailto:Binksfilms@gmail.com">Binksfilms@gmail.com</a>
+            <!-- ...existing code... -->
+            <a class="btn ghost" href="intro-seq.html">→ Aller à l’intro</a>
+            <!-- ...existing code... -->
+          </li>
+          <li>
+            <span class="ico yt" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M23 12s0-4-1-5a4 4 0 0 0-3-3C17 3 12 3 12 3s-5 0-7 1a4 4 0 0 0-3 3c-1 1-1 5-1 5s0 4 1 5a4 4 0 0 0 3 3c2 1 7 1 7 1s5 0 7-1a4 4 0 0 0 3-3c1-1 1-5 1-5z" fill="currentColor"/><polygon points="10,15 16,12 10,9" fill="#000"/></svg>
+            </span>
+            <a href="https://youtube.com/@binksfilms?si=-wDUuzqJuSeMX-RW" target="_blank" rel="noopener">YouTube</a>
+          </li>
+          <li>
+            <span class="ico ig" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>
+            </span>
+            <a href="https://www.instagram.com/binksfilms?igsh=MTBnd3Z1emlna2R0dg==" target="_blank" rel="noopener">Instagram</a>
+          </li>
+        </ul>
+
+        <h3>Brief rapide</h3>
+        <div class="checks">
+          <label><input type="checkbox"> Tournage</label>
+          <label><input type="checkbox"> Montage</label>
+          <label><input type="checkbox"> Color grading</label>
+          <label><input type="checkbox"> VFX</label>
+          <label><input type="checkbox"> Sound design</label>
+        </div>
+
+        <p class="tiny">Pour une demande pro urgente, mettez “URGENT” dans l’objet.</p>
+        <a id="backHome" class="btn ghost" href="index.html">← Retour à l’accueil</a>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // Stepper
+    (function(){
+      const steps = [...document.querySelectorAll('.step')];
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+      const send = document.getElementById('sendBtn');
+      const now = document.getElementById('stepNow');
+      let i = 0;
+      function render(){
+        steps.forEach((s,idx)=>s.hidden = idx!==i);
+        prev.disabled = i===0;
+        next.hidden = i===steps.length-1;
+        send.hidden = i!==steps.length-1;
+        now.textContent = i+1;
+      }
+      prev.addEventListener('click',()=>{ i=Math.max(0,i-1); render(); });
+      next.addEventListener('click',()=>{ i=Math.min(steps.length-1,i+1); render(); });
+      render();
+    })();
+
+    // Toggle blocs spécifiques selon les cases cochées
+    (function(){
+      const wrap = document.getElementById('ptypeWrap');
+      const blocks = {
+        musique: document.getElementById('block-musique'),
+        photo:   document.getElementById('block-photo'),
+        event:   document.getElementById('block-event'),
+        pub:     document.getElementById('block-pub'),
+        youtube: document.getElementById('block-youtube')
+      };
+      function update(){ 
+        const checked = [...wrap.querySelectorAll('input[name="ptype"]:checked')].map(x=>x.dataset.block);
+        for(const k in blocks) blocks[k].hidden = !checked.includes(k);
+      }
+      wrap.addEventListener('change', update); 
+      update();
+    })();
+
+    // Mailto enrichi
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      if (this.website.value.trim()) return; // honeypot
+
+      const pick = sel => [...this.querySelectorAll(sel)].filter(x=>x.checked).map(x=>x.value).join(', ')||'—';
+      const pickTypes = () => [...this.querySelectorAll('input[name="ptype"]:checked')].map(x=>x.value).join(', ')||'—';
+
+      const data = {
+        Nom: this.name.value.trim(),
+        Email: this.email.value.trim(),
+        Téléphone: this.phone.value.trim(),
+        Réseaux: this.socials.value.trim(),
+        Types: pickTypes(),
+        Projet: this.project.value.trim(),
+        Lieu: this.location.value.trim(),
+        Budget: this.budget.value,
+        'Date de tournage': this.shootDate.value,
+        Références: this.refs.value.trim(),
+        'Durée finale souhaitée': this.length.value,
+        Diffusion: pick('input[name="dist"]'),
+        'Formats livrables': pick('input[name="format"]'),
+        'Options supplémentaires': pick('input[name="add"]'),
+        LienMusique: this.musicLink?.value || '',
+        Musique: this.music?.value || '',
+        TypePhoto: this.photoType?.value || '',
+        DateEvent: this.eventDate?.value || '',
+        NbPersonnes: this.people?.value || '',
+        Objectifs: this.goals?.value || '',
+        DuréeSpot: (this.dur?.value || ''),
+        YT_Format: (this.ytFormat?.value || ''),
+        YT_Nb: this.ytCount?.value || '',
+        Message: this.message.value.trim()
+      };
+
+      const to = "Binksfilms@gmail.com";
+      const subject = encodeURIComponent(`[Contact] ${data.Types} — ${data.Projet || data.Nom}`);
+      const body = encodeURIComponent(Object.entries(data).map(([k,v])=>`${k}: ${v}`).join('\n'));
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+
+    // Back home robuste
+    document.getElementById('backHome').addEventListener('click', async function(ev){
+      ev.preventDefault();
+      for (const p of ["index.html","home.html"]){ 
+        try { const r=await fetch(p,{method:'HEAD'}); if(r.ok) return location.assign(p); } catch(_){} 
+      }
+      location.assign("index.html");
+    });
+
+    // Matrix fond discret + plus lent + dégradé
+    (function(){
+      const c = document.getElementById('matrixbg'), x = c.getContext('2d');
+      const phrase = "LES BEAUX ARTS DU GHETTO • ";
+      let W,H,S,C,D;
+      function R(){ 
+        W=c.width=innerWidth; H=c.height=innerHeight; 
+        S=Math.max(16,Math.min(26,Math.floor(W/48)));
+        x.font=S+"px monospace"; 
+        C=Math.floor(W/S); 
+        D=Array(C).fill(0).map(()=>Math.random()*H/S);
+      }
+      function T(){
+        x.fillStyle="rgba(0,0,0,0.16)"; x.fillRect(0,0,W,H);
+        for(let i=0;i<C;i++){ 
+          const idx = Math.floor(D[i]+i) % phrase.length;
+          const ch = phrase[idx];
+          // vert fondu discret (dégradé via alpha sinus)
+          const alpha = 0.28 + 0.18*Math.sin((D[i]+i)*.12);
+          x.fillStyle = "rgba(0,255,138,"+alpha+")";
+          x.fillText(ch, i*S, D[i]*S);
+          D[i]+=0.30;  // vitesse plus lente
+          if(D[i]*S>H && Math.random()>0.992) D[i]=0;
+        }
+        requestAnimationFrame(T);
+      }
+      addEventListener('resize',R); R(); T();
+    })();
+  </script>
+</body>
+</html>

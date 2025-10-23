@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BINKSFILMS — Contact</title>
+  <meta name="description" content="Contactez BinksFilms pour vos projets vidéo et photo. Formulaire de devis personnalisé, brief guidé et informations de contact direct.">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/css/main.css" as="style">
+  <link rel="preload" href="/css/contact.css" as="style">
+  <link rel="preload" href="/js/main.js" as="script">
+  <link rel="preload" href="/js/contact.js" as="script">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/contact.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+</head>
+<body data-page="contact">
+  <!-- Matrix Background -->
+  <canvas id="matrixbg" aria-hidden="true"></canvas>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <main class="contact">
+    <header class="head">
+      <h1>Contact</h1>
+      <p class="intro">Remplissez ce formulaire pour obtenir un devis personnalisé pour votre projet vidéo ou photo.</p>
+    </header>
+
+    <section class="grid centered-wrap">
+      <!-- FORMULAIRE EN ÉTAPES -->
+      <form id="contactForm" class="card form" autocomplete="on" novalidate>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off">
+
+        <!-- ÉTAPE 1 : Identité -->
+        <fieldset class="step" data-step="1">
+          <legend>Qui êtes-vous ?</legend>
+          <label>
+            <span>Nom / Structure</span>
+            <input type="text" name="name" required placeholder="Votre nom">
+          </label>
+          <div class="row">
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" required placeholder="vous@exemple.com">
+            </label>
+            <label>
+              <span>Téléphone (optionnel)</span>
+              <input type="tel" name="phone" placeholder="+33...">
+            </label>
+          </div>
+          <label>
+            <span>Réseaux (lien)</span>
+            <input type="url" name="socials" placeholder="https://instagram.com/...">
+          </label>
+        </fieldset>
+
+        <!-- ÉTAPE 2 : Types & infos clés -->
+        <fieldset class="step" data-step="2">
+          <legend>Le projet</legend>
+
+          <label>
+            <span>Type de projet (vous pouvez cocher plusieurs)</span>
+            <div class="row checks tight" id="ptypeWrap">
+              <label><input type="checkbox" name="ptype" value="Musique" data-block="musique"> Musique</label>
+              <label><input type="checkbox" name="ptype" value="Photo" data-block="photo"> Photo</label>
+              <label><input type="checkbox" name="ptype" value="Événementiel" data-block="event"> Événementiel</label>
+              <label><input type="checkbox" name="ptype" value="Publicité" data-block="pub"> Publicité</label>
+              <label><input type="checkbox" name="ptype" value="YouTube / Réseaux" data-block="youtube"> YouTube / Réseaux</label>
+              <label><input type="checkbox" name="ptype" value="Autre" data-block="autre"> Autre</label>
+            </div>
+          </label>
+
+          <div class="row">
+            <label>
+              <span>Nom du projet / événement</span>
+              <input type="text" name="project" placeholder="Titre / nom">
+            </label>
+            <label>
+              <span>Ville / Lieu</span>
+              <input type="text" name="location" placeholder="Paris, Lyon…">
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span>Budget (indicatif)</span>
+              <select name="budget">
+                <option>À définir</option>
+                <option>&lt; 1 000 €</option>
+                <option>1 000 – 3 000 €</option>
+                <option>3 000 – 8 000 €</option>
+                <option>&gt; 8 000 €</option>
+              </select>
+            </label>
+            <label>
+              <span>Date de tournage souhaitée</span>
+              <input type="date" name="shootDate">
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span>Références (lien)</span>
+              <input type="url" name="refs" placeholder="https://... moodboard / vidéo">
+            </label>
+            <label>
+              <span>Durée finale souhaitée</span>
+              <select name="length">
+                <option>À définir</option>
+                <option>&lt; 30 s</option>
+                <option>30–60 s</option>
+                <option>1–3 min</option>
+                <option>3–5 min</option>
+                <option>&gt; 5 min</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- ÉTAPE 3 : Diffusion & formats -->
+        <fieldset class="step" data-step="3">
+          <legend>Diffusion & formats</legend>
+          <label>
+            <span>Où sera diffusé ?</span>
+            <div class="row checks">
+              <label><input type="checkbox" name="dist" value="Instagram / TikTok"> Instagram / TikTok</label>
+              <label><input type="checkbox" name="dist" value="YouTube"> YouTube</label>
+              <label><input type="checkbox" name="dist" value="Site web"> Site web</label>
+              <label><input type="checkbox" name="dist" value="TV / Cinéma"> TV / Cinéma</label>
+            </div>
+          </label>
+          <label>
+            <span>Formats livrables (vidéo)</span>
+            <div class="row checks">
+              <label><input type="checkbox" name="format" value="16:9"> 16:9 (horizontal)</label>
+              <label><input type="checkbox" name="format" value="9:16"> 9:16 (vertical)</label>
+              <label><input type="checkbox" name="format" value="1:1"> 1:1 (carré)</label>
+            </div>
+          </label>
+
+          <label>
+            <span>Options supplémentaires</span>
+            <div class="row checks">
+              <label><input type="checkbox" name="add" value="Photos promotionnelles"> Photos promotionnelles</label>
+            </div>
+            <p class="hint">Photos en haute qualité prises pendant le tournage – idéales pour la promo.</p>
+          </label>
+        </fieldset>
+
+        <!-- ÉTAPE 4 : Détails spécifiques -->
+        <fieldset class="step" data-step="4">
+          <legend>Détails spécifiques</legend>
+
+          <div id="block-musique" class="ptype-block" hidden>
+            <label>
+              <span>Lien d'écoute (musique)</span>
+              <input type="url" name="musicLink" placeholder="Spotify / Drive / WeTransfer">
+            </label>
+            <label>
+              <span>Musique / Licences</span>
+              <select name="music">
+                <option>À définir</option>
+                <option>Piste fournie par vous</option>
+                <option>À composer</option>
+                <option>Bibliothèque / Licence</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="block-photo" class="ptype-block" hidden>
+            <label>
+              <span>Type de séance photo</span>
+              <input type="text" name="photoType" placeholder="Portrait, produit, événement...">
+            </label>
+          </div>
+
+          <div id="block-event" class="ptype-block" hidden>
+            <div class="row">
+              <label>
+                <span>Date de l'événement</span>
+                <input type="date" name="eventDate">
+              </label>
+              <label>
+                <span>Nb personnes (approx.)</span>
+                <input type="number" name="people" min="1" step="1" placeholder="50">
+              </label>
+            </div>
+            <label>
+              <span>Couverture souhaitée</span>
+              <div class="row checks">
+                <label><input type="checkbox" name="eventFmt" value="Vlog"> Vlog</label>
+                <label><input type="checkbox" name="eventFmt" value="Aftermovie"> Aftermovie</label>
+                <label><input type="checkbox" name="eventFmt" value="Interview"> Interview</label>
+              </div>
+            </label>
+          </div>
+
+          <div id="block-pub" class="ptype-block" hidden>
+            <label>
+              <span>Objectifs</span>
+              <input type="text" name="goals" placeholder="Lancement produit, image de marque…">
+            </label>
+            <label>
+              <span>Durée spot</span>
+              <div class="row checks">
+                <label><input type="radio" name="dur" value="15s"> 15s</label>
+                <label><input type="radio" name="dur" value="30s"> 30s</label>
+                <label><input type="radio" name="dur" value="1min"> 1 min</label>
+                <label><input type="radio" name="dur" value="2min"> 2 min</label>
+              </div>
+            </label>
+          </div>
+
+          <div id="block-youtube" class="ptype-block" hidden>
+            <div class="row">
+              <label>
+                <span>Format principal</span>
+                <div class="row checks">
+                  <label><input type="radio" name="ytFormat" value="16:9"> 16:9 YouTube</label>
+                  <label><input type="radio" name="ytFormat" value="9:16"> 9:16 Réseaux</label>
+                </div>
+              </label>
+              <label>
+                <span>Nombre de vidéos</span>
+                <input type="number" name="ytCount" min="1" step="1" placeholder="1">
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ÉTAPE 5 : Message & consent -->
+        <fieldset class="step" data-step="5">
+          <legend>Dernier détail</legend>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="6" required placeholder="Parlez-moi de l'idée, du timing, des références…"></textarea>
+          </label>
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            <span>J'accepte d'être recontacté au sujet de ma demande.</span>
+          </label>
+        </fieldset>
+
+        <!-- NAV STEPS -->
+        <div class="steps-nav">
+          <button type="button" class="btn ghost" id="prevBtn">Précédent</button>
+          <div class="steps-indicator"><span id="stepNow">1</span>/5</div>
+          <button type="button" class="btn" id="nextBtn">Étape suivante</button>
+          <button type="submit" class="btn primary" id="sendBtn" hidden>Envoyer</button>
+        </div>
+
+        <p class="note">Astuce : vous pouvez revenir en arrière à tout moment.</p>
+      </form>
+
+      <!-- CONTACTS DIRECTS -->
+      <aside class="card aside">
+        <h2>Contacts directs</h2>
+        <ul class="links">
+          <li>
+            <span class="ico mail" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm2 .5l8 5 8-5" 
+                      fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <a href="mailto:Binksfilms@gmail.com">Binksfilms@gmail.com</a>
+          </li>
+          <li>
+            <span class="ico yt" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M23 12s0-4-1-5a4 4 0 0 0-3-3C17 3 12 3 12 3s-5 0-7 1a4 4 0 0 0-3 3c-1 1-1 5-1 5s0 4 1 5a4 4 0 0 0 3 3c2 1 7 1 7 1s5 0 7-1a4 4 0 0 0 3-3c1-1 1-5 1-5z" 
+                      fill="currentColor"/>
+                <polygon points="10,15 16,12 10,9" fill="#000"/>
+              </svg>
+            </span>
+            <a href="https://youtube.com/@binksfilms?si=-wDUuzqJuSeMX-RW" target="_blank" rel="noopener">YouTube</a>
+          </li>
+          <li>
+            <span class="ico ig" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/>
+              </svg>
+            </span>
+            <a href="https://www.instagram.com/binksfilms?igsh=MTBnd3Z1emlna2R0dg==" target="_blank" rel="noopener">Instagram</a>
+          </li>
+        </ul>
+
+        <h3>Brief rapide</h3>
+        <div class="checks">
+          <label><input type="checkbox"> Tournage</label>
+          <label><input type="checkbox"> Montage</label>
+          <label><input type="checkbox"> Color grading</label>
+          <label><input type="checkbox"> VFX</label>
+          <label><input type="checkbox"> Sound design</label>
+        </div>
+
+        <p class="tiny">Pour une demande pro urgente, mettez "URGENT" dans l'objet.</p>
+        <a id="backHome" class="btn ghost" href="/pages/home.html">← Retour à l'accueil</a>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Navigation -->
+  <nav class="nav-fixed">
+    <a href="/pages/home.html" class="nav-link">Accueil</a>
+    <a href="/pages/projects.html" class="nav-link">Projets</a>
+    <a href="/pages/contact.html" class="nav-link active">Contact</a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+  <script src="/js/contact.js"></script>
+</body>
+</html>

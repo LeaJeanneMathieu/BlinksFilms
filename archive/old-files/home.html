@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BINKSFILMS — Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Video background -->
+    <div class="video-bg" aria-hidden="true">
+      <iframe
+        src="https://www.youtube.com/embed/YWkD-JxRiAg?autoplay=1&mute=1&playsinline=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=YWkD-JxRiAg"
+        title="BINKSFILMS"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen">
+      </iframe>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">BINKSFILMS</div>
+      <nav class="nav">
+        
+        <a href="projets.html">PROJETS</a>
+        <a href="#apropos">À&nbsp;PROPOS</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1>LES BEAUX ARTS DU GHETTO</h1>
+        <p>Voyages visuels & récits poétiques des réalités urbaines — l’art élève l’âme et révèle la beauté cachée dans l’ombre.</p>
+        <div class="cta">
+          <a href="#clips" class="btn">Voir nos créations</a>
+        </div>
+      </div>
+    </section>
+
+    
+
+   
+
+    <script src="home.js"></script>
+    <!-- ===== BINKSFILMS – OVERLAY À PROPOS (bloc autonome) ===== -->
+<div id="bf-about" class="bf-overlay" aria-hidden="true">
+  <div class="bf-card" role="dialog" aria-modal="true" aria-labelledby="bf-title">
+    <button id="bf-close" class="bf-x" aria-label="Fermer">×</button>
+
+    <div class="bf-prompt"><span class="bf-label">BINKSFILMS▸</span> veux-tu connaître mon univers ?</div>
+
+    <h2 id="bf-title" class="bf-title"></h2>
+    <p id="bf-typing" class="bf-text"></p>
+
+    <button id="bf-more" class="bf-btn" aria-expanded="false" aria-controls="bf-bot">En savoir plus</button>
+
+    <div id="bf-bot" class="bf-bot" hidden>
+      <div class="bf-topics" id="bf-topics">
+        <button class="bf-chip" data-topic="vision">Vision</button>
+        <button class="bf-chip" data-topic="process">Process</button>
+        <button class="bf-chip" data-topic="services">Services</button>
+        <button class="bf-chip" data-topic="contact">Contact</button>
+        <button class="bf-chip bf-back" data-topic="retour">← Retour au manifeste</button>
+      </div>
+      <div class="bf-chat" id="bf-chat"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{ --accent:#00ff8a; --txt:#e9ffee; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  /* Overlay */
+  .bf-overlay{ position:fixed; inset:0; display:none; place-items:center; z-index:9999;
+    background:rgba(0,0,0,.7); backdrop-filter:blur(6px); opacity:0; transition:opacity .3s ease; }
+  .bf-overlay.is-open{ display:grid; opacity:1; }
+  /* Panneau (look clean, sans glow vert) */
+  .bf-card{ position:relative; width:min(820px,92vw); max-height:86vh; overflow:auto;
+    background:rgba(8,8,8,.92); color:var(--txt); border:1px solid rgba(255,255,255,.09);
+    border-radius:12px; padding:clamp(18px,3.2vw,34px);
+    box-shadow:0 8px 30px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.02);
+  }
+  .bf-x{ position:absolute; top:10px; right:12px; font-size:26px; line-height:1; background:transparent;
+    color:#cfd8d3; border:0; cursor:pointer; padding:6px 10px; border-radius:8px; transition:background .2s,color .2s;}
+  .bf-x:hover{ background:rgba(255,255,255,.06); color:#fff; }
+  /* Ligne type terminal */
+  .bf-prompt{ font:600 13px/1.5 var(--mono); color:#bfeedd; margin:0 0 8px 0; opacity:.9; }
+  .bf-label{ color:var(--accent); }
+  /* Titre (Saira Stencil côté site) */
+  .bf-title{ font-family:'Saira Stencil One',system-ui,sans-serif; font-weight:700;
+    font-size:clamp(20px,2.4vw,28px); letter-spacing:.06em; color:var(--accent);
+    white-space:nowrap; overflow:hidden; border-right:2px solid var(--accent); padding-right:2px; margin:2px 0 12px; }
+  /* Manifeste tapé (style hacking) */
+  .bf-text{ font:15px/1.75 var(--mono); white-space:pre-line; margin:0; }
+  .bf-text::after{ content:"_"; margin-left:2px; color:var(--accent); animation:bfBlink .8s steps(1,start) infinite; }
+  @keyframes bfBlink{ 50%{opacity:0} }
+  /* Bouton */
+  .bf-btn{ margin-top:14px; display:inline-flex; align-items:center; gap:8px; padding:10px 14px;
+    border-radius:10px; border:1px solid rgba(255,255,255,.12); background:transparent; color:#e9efe9;
+    cursor:pointer; font:600 13px/1 var(--mono); letter-spacing:.08em; transition:background .2s,border-color .2s; }
+  .bf-btn:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.25); }
+  /* Bot */
+  .bf-bot{ margin-top:12px; }
+  .bf-topics{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+  .bf-chip{ font:600 12px/1 var(--mono); color:#d9eee3; border:1px solid rgba(255,255,255,.18); background:transparent;
+    border-radius:999px; padding:8px 12px; cursor:pointer; transition:background .2s,border-color .2s; }
+  .bf-chip:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.32); }
+  .bf-back{ margin-left:auto; }
+  .bf-chat{ border:1px dashed rgba(255,255,255,.16); border-radius:10px; padding:12px; background:rgba(0,0,0,.35); min-height:52px; }
+  .bf-msg{ font:14px/1.7 var(--mono); color:#cfeede; opacity:0; transform:translateY(6px); animation:bfIn .28s ease forwards; }
+  @keyframes bfIn{ to{opacity:1; transform:translateY(0)} }
+  .bf-hidden{ display:none !important; }
+  /* Quand l’overlay est ouvert → masquer le texte de fond (si .bg-marquee) */
+  body.overlay-open .bg-marquee{ opacity:0; transition:opacity .25s ease; pointer-events:none; }
+  /* Accessibilité */
+  .bf-x:focus-visible,.bf-btn:focus-visible,.bf-chip:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  @media (max-width:520px){ .bf-title{ white-space:normal; border-right:0; } }
+</style>
+
+<script>
+(()=> {
+  const overlay = document.getElementById('bf-about');
+  const closeBtn = document.getElementById('bf-close');
+  const typingEl = document.getElementById('bf-typing');
+  const titleEl  = document.getElementById('bf-title');
+  const moreBtn  = document.getElementById('bf-more');
+  const botBox   = document.getElementById('bf-bot');
+  const topicsEl = document.getElementById('bf-topics');
+  const chatEl   = document.getElementById('bf-chat');
+
+  /* --- Texte exact --- */
+  const TITLE = "LES BEAUX ARTS DU GHETTO";
+  const TEXT = `Créer. Explorer. Marquer.
+
+Chez BinksFilms, nous ne produisons pas simplement des images.
+Nous façonnons des univers.
+Chaque projet est une porte ouverte vers une expérience sensorielle où la musique, le mouvement et la lumière racontent une histoire unique.
+
+Ici, l’art dépasse la technique.
+Chaque plan est pensé pour provoquer une émotion, bousculer les codes et laisser une trace.
+Nous ne suivons pas les tendances : nous les redéfinissons.
+
+Notre mission est simple :
+transformer les idées en expériences visuelles qui résonnent, longtemps après le dernier plan.`;
+
+  /* --- Sujets (mode bot) --- */
+  const TOPICS = {
+    vision: `Notre vision est de créer des œuvres qui marquent les esprits.
+Nous mêlons esthétique, narration et son pour révéler une émotion sincère, identifiable dès le premier plan.`,
+    process: `De l’idée à l’écran : repérage, moodboard, écriture visuelle, tournage précis, montage, étalonnage et sound design.
+Chaque étape est pensée pour la cohérence et la puissance émotionnelle.`,
+    services: `Clips, courts formats, contenus de marque, photographie promotionnelle, color grading, VFX légers, montage & sound design.
+Toujours avec une identité forte.`,
+    contact: `Parlons de ton projet.
+Contact direct : Binksfilms@gmail.com — ou passe par la page Contact pour un brief guidé.`
+  };
+
+  /* --- Son clavier (réglable) --- */
+  const TYPE_SOUND = false;     // false pour couper
+  const TYPE_VOL   = 0.10;     // 0.00 → 0.20
+  const TYPE_MINF  = 800, TYPE_MAXF = 1200;
+  const AC = (window.AudioContext||window.webkitAudioContext) ? new (window.AudioContext||window.webkitAudioContext)() : null;
+
+  function keyClick(vol=TYPE_VOL){
+    if(!TYPE_SOUND || !AC) return;
+    const now = AC.currentTime;
+    const osc = AC.createOscillator();
+    const gn  = AC.createGain();
+    const f   = TYPE_MINF + Math.random()*(TYPE_MAXF-TYPE_MINF);
+    osc.type = 'square'; osc.frequency.setValueAtTime(f, now);
+    gn.gain.setValueAtTime(vol, now);
+    gn.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+    const noise = AC.createBufferSource();
+    const buf = AC.createBuffer(1, 4410, 44100);
+    const data = buf.getChannelData(0);
+    for(let i=0;i<data.length;i++) data[i] = (Math.random()*2-1)*0.08;
+    noise.buffer = buf;
+    const nGain = AC.createGain();
+    nGain.gain.setValueAtTime(vol*0.3, now);
+    nGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+    osc.connect(gn).connect(AC.destination);
+    noise.connect(nGain).connect(AC.destination);
+    osc.start(now);  osc.stop(now + 0.06);
+    noise.start(now); noise.stop(now + 0.05);
+  }
+
+  /* --- Machine à écrire --- */
+  function typeWriter(node, str, speed=18, withSound=true, done){
+    node.textContent = "";
+    let i=0;
+    (function tick(){
+      node.textContent += str.charAt(i);
+      if(withSound && str.charAt(i) !== ' ' && str.charAt(i) !== '\\n') keyClick();
+      i++;
+      if(i<str.length) setTimeout(tick, speed); else if(typeof done==="function") done();
+    })();
+  }
+  function typeTitle(node, str, speed=10, done){
+    node.textContent = "";
+    let i=0;
+    (function tick(){
+      node.textContent = str.slice(0, ++i);
+      if(i<str.length) setTimeout(tick, speed); else if(typeof done==="function") done();
+    })();
+  }
+
+  /* --- Open / Close --- */
+  function openOverlay(e){
+    if(e){ e.preventDefault(); }
+    document.body.classList.add('overlay-open');
+    overlay.classList.add('is-open');
+    if(AC && AC.state === 'suspended') AC.resume();
+    typingEl.classList.remove('bf-hidden'); botBox.hidden = true; chatEl.innerHTML = "";
+    typeTitle(titleEl, TITLE, 10, ()=> typeWriter(typingEl, TEXT, 18, true));
+    moreBtn.setAttribute('aria-expanded','false'); closeBtn.focus();
+  }
+  function closeOverlay(){
+    overlay.classList.remove('is-open');
+    document.body.classList.remove('overlay-open');
+  }
+  closeBtn.addEventListener('click', closeOverlay);
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) closeOverlay(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeOverlay(); });
+
+  // fermer overlay si on clique ailleurs dans le menu
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('nav a'); if(!a) return;
+    if(a === aboutLink) return;
+    closeOverlay();
+  });
+
+  /* --- “En savoir plus” → mode bot --- */
+  moreBtn.addEventListener('click', ()=>{
+    const expanded = moreBtn.getAttribute('aria-expanded')==='true';
+    if(!expanded){
+      typingEl.classList.add('bf-hidden'); botBox.hidden = false; chatEl.innerHTML = "";
+      pushMsg("Choisis un sujet : Vision, Process, Services, Contact. (← Retour au manifeste)");
+      moreBtn.setAttribute('aria-expanded','true');
+    }else{
+      botBox.hidden = true; typingEl.classList.remove('bf-hidden');
+      moreBtn.setAttribute('aria-expanded','false');
+    }
+  });
+
+  topicsEl.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.bf-chip'); if(!btn) return;
+    const key = btn.getAttribute('data-topic');
+    if(key==='retour'){ botBox.hidden=true; typingEl.classList.remove('bf-hidden'); moreBtn.setAttribute('aria-expanded','false'); return; }
+    const content = TOPICS[key]; if(!content) return;
+    chatEl.innerHTML = ""; pushMsg("→ " + btn.textContent.trim()); typeChat(content);
+  });
+
+  function pushMsg(text){
+    const p = document.createElement('p'); p.className='bf-msg'; p.textContent=text; chatEl.appendChild(p);
+  }
+  function typeChat(text){
+    const p = document.createElement('p'); p.className='bf-msg'; chatEl.appendChild(p);
+    let i=0; (function tick(){ p.textContent = text.slice(0, ++i);
+      if(text[i-1] && text[i-1] !== ' ' && text[i-1] !== '\\n') keyClick(0.06);
+      if(i<text.length) setTimeout(tick, 14);
+    })();
+  }
+
+  /* --- détecte ton lien “À PROPOS” --- */
+  function findAbout(){
+    let byId = document.getElementById('open-about'); if(byId) return byId;
+    const links = [...document.querySelectorAll('a')];
+    return links.find(a=>{
+      const t=(a.textContent||'').toUpperCase(); const h=(a.getAttribute('href')||'').toLowerCase();
+      return t.includes('PROPOS') || h==='#apropos';
+    }) || null;
+  }
+  const aboutLink = findAbout();
+  if(aboutLink) aboutLink.addEventListener('click', openOverlay);
+})();
+</script>
+<!-- ===== FIN OVERLAY ===== -->
+
+  </body>
+</html>

@@ -1,0 +1,1 @@
+// Futures interactions (scroll effects, parallax, neon toggles) will live here.

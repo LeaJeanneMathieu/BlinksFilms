@@ -1,0 +1,35 @@
+{
+  "name": "binsfilms-portfolio",
+  "version": "2.0.0",
+  "description": "BinksFilms Portfolio Website - Les Beaux Arts du Ghetto",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "echo 'Deploy to your hosting provider'"
+  },
+  "keywords": [
+    "portfolio",
+    "video",
+    "music",
+    "photography",
+    "binksfilms",
+    "creative"
+  ],
+  "author": "BinksFilms",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/binsfilms.art"
+  },
+  "homepage": "https://binsfilms.art",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

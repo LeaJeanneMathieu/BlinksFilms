@@ -1,0 +1,41 @@
+{
+  "site": {
+    "name": "BINKSFILMS",
+    "tagline": "Les Beaux Arts du Ghetto",
+    "description": "Créateur de contenus visuels. Clips musicaux, photographie, vidéos promotionnelles.",
+    "url": "https://binsfilms.art",
+    "email": "Binksfilms@gmail.com"
+  },
+  "pages": {
+    "intro": "index.html",
+    "home": "pages/home.html",
+    "projects": "pages/projects.html",
+    "contact": "pages/contact.html"
+  },
+  "assets": {
+    "images": "assets/images/",
+    "audio": "assets/audio/",
+    "css": "css/",
+    "js": "js/"
+  },
+  "features": {
+    "intro_animation": true,
+    "video_background": true,
+    "interactive_overlay": true,
+    "matrix_background": true,
+    "typing_effects": true,
+    "keyboard_navigation": true
+  },
+  "performance": {
+    "preload_critical": true,
+    "lazy_loading": true,
+    "compression": true,
+    "cache_optimization": true
+  },
+  "accessibility": {
+    "keyboard_navigation": true,
+    "screen_reader_support": true,
+    "high_contrast": true,
+    "reduced_motion_support": true
+  }
+}

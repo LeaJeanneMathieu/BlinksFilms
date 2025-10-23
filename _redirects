@@ -1,0 +1,12 @@
+# BINKSFILMS — Netlify Redirects
+
+# Redirect old pages to new structure
+/home.html /pages/home.html 301
+/projets.html /pages/projects.html 301
+/contact.html /pages/contact.html 301
+
+# Redirect root to intro
+/ /index.html 200
+
+# SPA fallback for client-side routing
+/* /index.html 200

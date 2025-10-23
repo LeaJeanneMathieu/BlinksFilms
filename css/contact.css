@@ -1,0 +1,383 @@
+/* BINKSFILMS — Contact Page Styles */
+:root {
+  --bg: #0b0d0f;
+  --neon: #00ff95;
+  --ink: #0f141b;
+  --text: #e9f1f1;
+  --muted: #93a3a3;
+  --card: #12161c;
+  --accent: #ffd200;
+  --magenta: #ff2ec4;
+  --cyan: #00e5ff;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 20% 20%, #10161d, #07090c 60%, #000);
+  color: var(--text);
+  font: 500 15px/1.5 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Matrix Background */
+#matrixbg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Main Layout */
+.contact {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--neon), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.centered-wrap {
+  align-items: start;
+}
+
+/* Form Styles */
+.form {
+  background: linear-gradient(180deg, #131922 0%, #0e1217 100%);
+  border: 1px solid #1b2330;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon), var(--accent), var(--neon));
+  border-radius: 16px 16px 0 0;
+}
+
+/* Form Steps */
+.step {
+  border: none;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.step legend {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+
+/* Form Fields */
+label {
+  display: block;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+label span {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #2a3444;
+  border-radius: 8px;
+  background: #0f141b;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--neon);
+  box-shadow: 0 0 0 2px rgba(0, 255, 149, 0.2);
+  background: #0a0f15;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--muted);
+}
+
+/* Row Layout */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Checkboxes and Radio Buttons */
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.checks.tight {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.checks label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.checks label:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.checks input[type="checkbox"],
+.checks input[type="radio"] {
+  width: auto;
+  margin: 0;
+  accent-color: var(--neon);
+}
+
+/* Honeypot */
+.hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+/* Project Type Blocks */
+.ptype-block {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ptype-block[hidden] {
+  display: none;
+}
+
+/* Steps Navigation */
+.steps-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #2a3444;
+}
+
+.steps-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #2a3444;
+}
+
+.note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
+/* Aside */
+.aside {
+  background: linear-gradient(180deg, #131922 0%, #0e1217 100%);
+  border: 1px solid #1b2330;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  position: sticky;
+  top: 2rem;
+}
+
+.aside h2 {
+  font-family: var(--font-display);
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.aside h3 {
+  color: var(--text);
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+/* Links */
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.links li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.links li:last-child {
+  border-bottom: none;
+}
+
+.ico {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.ico svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.links a {
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.links a:hover {
+  color: var(--neon);
+}
+
+/* Quick Brief */
+.checks:not(.tight) {
+  grid-template-columns: 1fr;
+}
+
+.tiny {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+/* Hints */
+.hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Consent */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.consent input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  margin-top: 0.2rem;
+}
+
+.consent span {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .contact {
+    padding: 1rem 0.5rem;
+  }
+  
+  .form {
+    padding: 1.5rem;
+  }
+  
+  .steps-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .steps-nav .btn {
+    width: 100%;
+  }
+}
