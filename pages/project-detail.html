@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BINKSFILMS — 815 BINKS</title>
+  <meta name="description"
+    content="Découvrez le projet 815 BINKS de BinksFilms : clip vidéo avec MIKADO X RICO. Une création visuelle immersive.">
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/css/main.css" as="style">
+  <link rel="preload" href="/css/project-detail.css" as="style">
+  <link rel="preload" href="/js/main.js" as="script">
+  <link rel="preload" href="/js/project-detail.js" as="script">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/project-detail.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+</head>
+
+<body data-page="project-detail">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">BLINKS FILM</div>
+    <nav class="nav">
+      <a href="/pages/projects.html" class="back-btn">← RETOUR</a>
+    </nav>
+  </header>
+
+  <!-- Hero Image Section -->
+  <section class="hero-image-section">
+    <div class="hero-image-container">
+      <img id="heroImage" src="/assets/images/watch-cover1.png" alt="815 BINKS Hero Image">
+    </div>
+  </section>
+
+  <!-- Title Section -->
+  <section class="title-section">
+    <div class="container">
+      <div class="video-type">CLIP VIDEO</div>
+      <h1 class="project-title" id="projectTitle">815 BLINKS</h1>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <div class="video-container">
+      <div class="vintage-tv-frame">
+        <div class="tv-screen">
+          <div class="video-thumbnail" id="videoThumbnail">
+            <img id="videoThumbnailImg" src="/assets/images/watch-cover1.png" alt="815 BINKS Video Thumbnail">
+            <div class="play-overlay">
+              <button class="play-btn" id="playBtn">
+                <span class="play-icon">▶</span>
+                <span class="play-text">WATCH VIDEO</span>
+              </button>
+            </div>
+          </div>
+          <div class="video-iframe-container" id="videoContainer" style="display: none;">
+            <iframe id="projectVideo" src="" frameborder="0"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>
+            <button class="close-video" id="closeVideo">×</button>
+          </div>
+        </div>
+        <div class="tv-controls">
+          <div class="tv-knob tv-knob-left"></div>
+          <div class="tv-knob tv-knob-right"></div>
+        </div>
+        <div class="tv-antenna"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-header">
+        <h2 class="section-title">ABOUT</h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="about-content">
+        <p class="about-text" id="aboutText">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="gallery-header">
+        <div class="title-line"></div>
+        <h2 class="section-title">GALLERY</h2>
+        <div class="title-line"></div>
+      </div>
+        <div class="gallery-scroll-container">
+          <div class="gallery-scroll-row" id="galleryScrollRow1">
+            <!-- First row of gallery images -->
+          </div>
+          <div class="gallery-scroll-row" id="galleryScrollRow2">
+            <!-- Second row of gallery images -->
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+  <script src="/js/project-detail.js"></script>
+</body>
+
+</html>

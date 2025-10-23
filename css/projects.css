@@ -1,2 +1,748 @@
 /* BINKSFILMS — Projects Page Styles */
-/* Page complètement refaite - prête pour la nouvelle maquette */
+/* Style inspiré de la maquette avec lecteur vidéo YouTube */
+
+/* Header spécifique à la page projets */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px clamp(16px, 3vw, 32px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  font-size: 1.2rem;
+  color: var(--fg);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Dropdown Navigation */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--fg);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-dropdown-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown-btn.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px 0;
+  min-width: 280px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1001;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.nav-dropdown-content.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #333;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  margin: 0 8px;
+}
+
+.project-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+.project-item.active {
+  background: rgba(0, 255, 102, 0.1);
+  color: #00ff66;
+}
+
+.project-thumbnail {
+  width: 40px;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.project-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Hamburger Menu */
+.nav-menu-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.nav-menu-btn span {
+  width: 20px;
+  height: 2px;
+  background: var(--fg);
+  transition: all 0.3s ease;
+}
+
+.nav-menu-btn:hover span {
+  background: var(--accent);
+}
+
+/* Main Video Section */
+.video-main {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw;
+  height: 67.5vw;
+  /* 16:9 aspect ratio with extra width for parallax */
+  min-height: 120vh;
+  min-width: 213.33vh;
+  /* 16:9 aspect ratio with extra width for parallax */
+  border: none;
+  will-change: transform;
+}
+
+/* Video Overlay */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.video-info {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  color: white;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.video-type {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.project-title {
+  margin-bottom: 20px;
+}
+
+.project-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 0.9;
+  margin-bottom: 5px;
+}
+
+.project-name {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.project-artists {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.separator {
+  opacity: 0.6;
+}
+
+/* Video Controls */
+.video-controls {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+.explore-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.explore-btn:hover {
+  background: white;
+  color: black;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.explore-btn:hover .arrow {
+  transform: translateX(3px);
+}
+
+
+/* Navigation Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-overlay);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.nav-overlay-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+}
+
+.nav-overlay-content a {
+  color: var(--fg);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-overlay-content a:hover,
+.nav-overlay-content a.active {
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+}
+
+.nav-overlay-content a::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-overlay-content a:hover::after,
+.nav-overlay-content a.active::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 16px;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav-dropdown-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .video-info {
+    left: 3%;
+  }
+
+  .project-number {
+    font-size: 2.5rem;
+  }
+
+  .project-name {
+    font-size: 3rem;
+  }
+
+  .video-controls {
+    bottom: 3%;
+    right: 3%;
+  }
+
+  .explore-btn {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .project-number {
+    font-size: 2rem;
+  }
+
+  .project-name {
+    font-size: 2.5rem;
+  }
+
+  .project-artists {
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-overlay-content a {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.video-info>* {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.video-info>*:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.video-info>*:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.video-info>*:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.video-info>*:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.video-controls>* {
+  animation: fadeInUp 0.6s ease-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+}
+
+/* Second Video Section - CRIMSHOT */
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-section .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-section .video-container iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw;
+  height: 67.5vw;
+  /* 16:9 aspect ratio with extra width for parallax */
+  min-height: 120vh;
+  min-width: 213.33vh;
+  /* 16:9 aspect ratio with extra width for parallax */
+  border: none;
+  will-change: transform;
+}
+
+/* Scroll Effects for Video Sections */
+.video-main {
+  position: relative;
+  z-index: 2;
+}
+
+.video-section {
+  position: relative;
+  z-index: 1;
+  transform: translateY(0);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Intersection Observer animations */
+.video-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.video-section.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scrolling between sections */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Parallax optimization */
+.video-main,
+.video-section {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.video-container iframe,
+.video-overlay,
+.video-info,
+.video-controls {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Enhanced parallax effects */
+.video-main {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.video-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: #000;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+/* Parallax layers with different speeds */
+.parallax-layer-1 {
+  transform: translateZ(0);
+}
+
+.parallax-layer-2 {
+  transform: translateZ(-1px) scale(1.01);
+}
+
+.parallax-layer-3 {
+  transform: translateZ(-2px) scale(1.02);
+}
+
+/* Smooth transitions for parallax elements */
+.video-info,
+.video-controls,
+.video-overlay {
+  transition: transform 0.1s ease-out;
+}
+
+/* Performance optimization */
+.video-container iframe {
+  transform: translate3d(-50%, -50%, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Video section specific styles */
+#crimshot-section {
+  background: linear-gradient(135deg, #000 0%, #111 100%);
+}
+
+#crimshot-section .video-overlay {
+  background: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.7) 100%);
+}
+
+#crimshot-section .project-name {
+  color: #ff6b6b;
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+#crimshot-section .explore-btn:hover {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+  color: white;
+}
+
+/* ANYONE Section Styles */
+#anyone-section {
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+#anyone-section .video-info {
+  color: #fff;
+}
+
+#anyone-section .year {
+  color: #888;
+}
+
+#anyone-section .video-type {
+  color: #aaa;
+}
+
+#anyone-section .project-number {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+#anyone-section .artist {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+#anyone-section .explore-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+#anyone-section .explore-btn:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #1a1a1a;
+}
+
+/* MELO Section Styles */
+#melo-section {
+  background: #0a0a0a;
+  border-top: 1px solid #444;
+}
+
+#melo-section .video-info {
+  color: #fff;
+}
+
+#melo-section .year {
+  color: #999;
+}
+
+#melo-section .video-type {
+  color: #bbb;
+}
+
+#melo-section .project-number {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+#melo-section .artist {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+#melo-section .explore-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+#melo-section .explore-btn:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #0a0a0a;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+
+/* Responsive adjustments for video sections */
+@media (max-width: 768px) {
+  .video-section .video-container iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.78vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-section .video-info {
+    left: 3%;
+  }
+
+  .video-section .project-number {
+    font-size: 2rem;
+  }
+
+  .video-section .project-name {
+    font-size: 2.5rem;
+  }
+
+  .video-section .video-controls {
+    bottom: 3%;
+    right: 3%;
+  }
+}
