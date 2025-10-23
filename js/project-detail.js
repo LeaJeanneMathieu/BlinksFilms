@@ -174,7 +174,7 @@ function initGallery() {
 
   const galleryRow1 = document.getElementById('galleryScrollRow1');
   const galleryRow2 = document.getElementById('galleryScrollRow2');
-  
+
   if (!galleryRow1 || !galleryRow2) return;
 
   // Clear existing gallery
@@ -185,13 +185,13 @@ function initGallery() {
   const images = project.galleryImages;
   const midPoint = Math.ceil(images.length / 2);
   
-  // First row
+  // First row - first half of images
   images.slice(0, midPoint).forEach((imageSrc, index) => {
     const galleryItem = createGalleryItem(imageSrc, index, project.title);
     galleryRow1.appendChild(galleryItem);
   });
   
-  // Second row
+  // Second row - second half of images
   images.slice(midPoint).forEach((imageSrc, index) => {
     const galleryItem = createGalleryItem(imageSrc, index + midPoint, project.title);
     galleryRow2.appendChild(galleryItem);
@@ -220,15 +220,15 @@ function initGalleryScrollEffects() {
   const galleryRow1 = document.getElementById('galleryScrollRow1');
   const galleryRow2 = document.getElementById('galleryScrollRow2');
   const galleryItems = document.querySelectorAll('.gallery-item');
-  
+
   if (!galleryRow1 || !galleryRow2 || galleryItems.length === 0) return;
-  
+
   // Intersection Observer for gallery items
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   };
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -236,25 +236,13 @@ function initGalleryScrollEffects() {
       }
     });
   }, observerOptions);
-  
+
   // Observe each gallery item
   galleryItems.forEach(item => {
     observer.observe(item);
   });
-  
-  // Duplicate images for seamless loop
-  duplicateImagesForSeamlessLoop(galleryRow1);
-  duplicateImagesForSeamlessLoop(galleryRow2);
 }
 
-// Duplicate images for seamless infinite scroll
-function duplicateImagesForSeamlessLoop(row) {
-  const items = Array.from(row.children);
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    row.appendChild(clone);
-  });
-}
 
 function openImageModal(imageSrc, title) {
   // Create modal

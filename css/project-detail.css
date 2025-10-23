@@ -437,23 +437,28 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  animation: none !important;
 }
 
 .gallery-scroll-row {
   display: flex;
   gap: 20px;
   padding: 20px 0;
-  will-change: transform;
   overflow: hidden;
+  animation: none !important;
+  transform: none !important;
 }
 
-.gallery-scroll-row:first-child {
-  animation: scrollLeft 30s linear infinite;
+/* Force stop all gallery animations */
+.gallery-scroll-container *,
+.gallery-scroll-row,
+.gallery-scroll-row * {
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
 }
 
-.gallery-scroll-row:last-child {
-  animation: scrollRight 30s linear infinite;
-}
+/* No auto-scroll animations */
 
 .gallery-item {
   position: relative;
@@ -481,31 +486,9 @@
   transform: scale(1.05);
 }
 
-/* Continuous scroll animations */
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
+/* Scroll animations removed */
 
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes scrollRight {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-/* Pause animation on hover */
-.gallery-scroll-container:hover .gallery-scroll-row {
-  animation-play-state: paused;
-}
+/* No animations to pause */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -628,9 +611,12 @@
 .hero-image-section,
 .title-section,
 .video-section,
-.about-section,
-.gallery-section {
+.about-section {
   animation: fadeInUp 0.8s ease-out;
+}
+
+.gallery-section {
+  /* No animation for gallery section */
 }
 
 /* Smooth transitions */
@@ -642,4 +628,22 @@
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* FORCE STOP ALL GALLERY ANIMATIONS */
+#galleryScrollRow1,
+#galleryScrollRow2,
+.gallery-scroll-container,
+.gallery-scroll-row,
+.gallery-item {
+  animation: none !important;
+  transform: translateX(0) !important;
+  transition: none !important;
+}
+
+/* Override any potential inherited animations */
+.gallery-scroll-container * {
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
 }
