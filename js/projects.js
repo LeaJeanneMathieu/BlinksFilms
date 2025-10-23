@@ -83,9 +83,6 @@ function initProjectsPage() {
 
   // Initialize MELO section
   initMeloSection();
-  
-  // Add mobile play buttons if on mobile
-  addMobilePlayButtons();
 }
 
 // Dropdown functionality
@@ -361,73 +358,6 @@ function playVideo(iframe) {
   }
 }
 
-// Check if device is mobile
-function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-// Add mobile play buttons
-function addMobilePlayButtons() {
-  if (isMobileDevice()) {
-    const videoSections = document.querySelectorAll('.video-section, .video-main');
-    
-    videoSections.forEach(section => {
-      const iframe = section.querySelector('iframe');
-      const overlay = section.querySelector('.video-overlay');
-      
-      if (iframe && overlay) {
-        // Add mobile play button
-        const mobilePlayBtn = document.createElement('button');
-        mobilePlayBtn.className = 'mobile-play-btn';
-        mobilePlayBtn.innerHTML = `
-          <span class="play-icon">▶</span>
-          <span class="play-text">TAP TO PLAY</span>
-        `;
-        
-        // Style the button
-        mobilePlayBtn.style.cssText = `
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: rgba(0, 0, 0, 0.8);
-          border: 2px solid #fff;
-          color: #fff;
-          padding: 15px 30px;
-          border-radius: 50px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-family: 'Inter', sans-serif;
-          font-weight: 600;
-          font-size: 14px;
-          z-index: 10;
-          transition: all 0.3s ease;
-        `;
-        
-        // Add hover effect
-        mobilePlayBtn.addEventListener('mouseenter', () => {
-          mobilePlayBtn.style.background = '#fff';
-          mobilePlayBtn.style.color = '#000';
-        });
-        
-        mobilePlayBtn.addEventListener('mouseleave', () => {
-          mobilePlayBtn.style.background = 'rgba(0, 0, 0, 0.8)';
-          mobilePlayBtn.style.color = '#fff';
-        });
-        
-        // Play video on click
-        mobilePlayBtn.addEventListener('click', () => {
-          playVideo(iframe);
-          mobilePlayBtn.style.display = 'none';
-        });
-        
-        overlay.appendChild(mobilePlayBtn);
-      }
-    });
-  }
-}
 
 // Function to pause video
 function pauseVideo(iframe) {
