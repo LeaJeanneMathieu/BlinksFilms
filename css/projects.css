@@ -588,6 +588,56 @@ html {
   background: linear-gradient(135deg, #000 0%, #111 100%);
 }
 
+/* Masquer complètement l'interface YouTube */
+.video-section .video-container iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw;
+  height: 67.5vw;
+  min-height: 120vh;
+  min-width: 213.33vh;
+  border: none;
+  will-change: transform;
+  /* Masquer complètement l'UI YouTube */
+  pointer-events: none;
+  z-index: -1;
+  /* Forcer le masquage de l'UI YouTube */
+  filter: brightness(0.8) contrast(1.1);
+  opacity: 0.95;
+}
+
+/* S'assurer que l'overlay couvre complètement l'iframe */
+.video-section .video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Masque supplémentaire pour masquer l'UI YouTube */
+.video-section .video-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.video-section .video-info,
+.video-section .video-controls {
+  pointer-events: auto;
+}
+
 #crimshot-section .video-overlay {
   background: linear-gradient(135deg,
       rgba(0, 0, 0, 0.6) 0%,
