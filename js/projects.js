@@ -81,6 +81,9 @@ function initProjectsPage() {
   // Initialize text animations
   initTextAnimations();
 
+  // Initialize scroll-based dropdown update
+  initScrollBasedDropdownUpdate();
+
   // Initialize CRIMSHOT section
   initCrimshotSection();
 
@@ -1002,6 +1005,56 @@ function updateDropdownForCrimshot() {
       }
     }
   }
+}
+
+// Initialize scroll-based dropdown update
+function initScrollBasedDropdownUpdate() {
+  const sections = [
+    { id: '815', element: document.querySelector('.video-main'), name: '815 BINKS' },
+    { id: 'crimshot', element: document.getElementById('crimshot-section'), name: 'CRIMSHOT' },
+    { id: 'anyone', element: document.getElementById('anyone-section'), name: 'ANYONE' },
+    { id: 'melo', element: document.getElementById('melo-section'), name: 'MELO' }
+  ];
+
+  const dropdownBtn = document.getElementById('projectDropdown');
+
+  if (!dropdownBtn) return;
+
+  const observerOptions = {
+    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // Multiple thresholds for better detection
+    rootMargin: '0px 0px -10% 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    // Find the section with the highest intersection ratio
+    let mostVisibleSection = null;
+    let highestRatio = 0;
+
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > highestRatio) {
+        highestRatio = entry.intersectionRatio;
+        mostVisibleSection = sections.find(s => s.element === entry.target);
+      }
+    });
+
+    if (mostVisibleSection) {
+      // Update dropdown button text
+      dropdownBtn.innerHTML = `${mostVisibleSection.name} <span class="dropdown-arrow">▼</span>`;
+
+      // Update active state in dropdown
+      updateDropdownActiveState(mostVisibleSection.id);
+
+      // Update current project
+      currentProject = mostVisibleSection.id;
+    }
+  }, observerOptions);
+
+  // Observe all sections
+  sections.forEach(section => {
+    if (section.element) {
+      observer.observe(section.element);
+    }
+  });
 }
 
 // Smooth scrolling for any internal links
