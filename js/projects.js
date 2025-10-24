@@ -25,7 +25,7 @@ const projects = {
     title: 'ANYONE',
     number: '002',
     name: 'ANYONE',
-    artists: ['ANYONE'],
+    artists: ['T55A'],
     videoId: 'VJFCwBSMXd4',
     year: '2024',
     type: 'Clip vidéo'
@@ -34,17 +34,8 @@ const projects = {
     title: 'MELO',
     number: '003',
     name: 'MELO',
-    artists: ['MELO'],
+    artists: ['UN BANDIT'],
     videoId: 'nkntwx-ZAMI',
-    year: '2024',
-    type: 'Clip vidéo'
-  },
-  'anyone': {
-    title: 'ANYONE',
-    number: '003',
-    name: 'ANYONE',
-    artists: ['ANYONE'],
-    videoId: '18006YbHjKA', // Remplacer par l'ID réel
     year: '2024',
     type: 'Clip vidéo'
   }
