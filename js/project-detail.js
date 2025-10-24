@@ -19,15 +19,43 @@ const projects = {
   'crimshot': {
     title: 'CRIMSHOT',
     videoId: '_4rAF1_ZlJE',
-    coverImage: '/assets/images/0002.png', // Fallback image
+    coverImage: '/assets/images/watch-cover-crim.png',
     aboutText: 'CRIMSHOT est une exploration visuelle audacieuse qui plonge dans les profondeurs de l\'expression artistique contemporaine. Ce projet capture l\'intensité et la raw energy de la création, où chaque frame est une déclaration, chaque séquence une révélation. Une œuvre qui défie les conventions et redéfinit les limites de l\'art visuel.',
     galleryImages: [
-      '/assets/images/0007.png',
-      '/assets/images/0008.png',
-      '/assets/images/0009.png',
-      '/assets/images/0010.png',
-      '/assets/images/0011.png',
-      '/assets/images/0012.png'
+      '/assets/images/crimshot-1.png',
+      '/assets/images/crimshot-2.png',
+      '/assets/images/crimshot-3.png',
+      '/assets/images/crimshot-4.png',
+      '/assets/images/crimshot-5.png',
+      '/assets/images/crimshot-6.png'
+    ]
+  },
+  'anyone': {
+    title: 'ANYONE',
+    videoId: 'VJFCwBSMXd4',
+    coverImage: '/assets/images/watch-cover-anyone.png',
+    aboutText: 'ANYONE est un projet qui explore les nuances de l\'identité et de l\'expression personnelle. T55A nous guide à travers un univers visuel où chaque image révèle une facette différente de l\'expérience humaine. Une création qui questionne les perceptions et invite à la réflexion sur notre place dans le monde.',
+    galleryImages: [
+      '/assets/images/anyone-1.png',
+      '/assets/images/anyone-2.png',
+      '/assets/images/anyone-3.png',
+      '/assets/images/anyone-4.png',
+      '/assets/images/anyone-5.png',
+      '/assets/images/anyone-6.png'
+    ]
+  },
+  'melo': {
+    title: 'MELO',
+    videoId: 'nkntwx-ZAMI',
+    coverImage: '/assets/images/watch-cover-melo.png',
+    aboutText: 'MELO est une symphonie visuelle orchestrée par UN BANDIT, où chaque séquence compose une mélodie d\'émotions et d\'expressions. Ce projet capture l\'essence de la musicalité visuelle, créant une harmonie parfaite entre l\'image et le mouvement. Une œuvre qui danse entre réalité et imagination.',
+    galleryImages: [
+      '/assets/images/melo-1.png',
+      '/assets/images/melo-2.png',
+      '/assets/images/melo-3.png',
+      '/assets/images/melo-4.png',
+      '/assets/images/melo-5.png',
+      '/assets/images/melo-6.png'
     ]
   }
 };
@@ -184,13 +212,13 @@ function initGallery() {
   // Split images between two rows
   const images = project.galleryImages;
   const midPoint = Math.ceil(images.length / 2);
-  
+
   // First row - first half of images
   images.slice(0, midPoint).forEach((imageSrc, index) => {
     const galleryItem = createGalleryItem(imageSrc, index, project.title);
     galleryRow1.appendChild(galleryItem);
   });
-  
+
   // Second row - second half of images
   images.slice(midPoint).forEach((imageSrc, index) => {
     const galleryItem = createGalleryItem(imageSrc, index + midPoint, project.title);
