@@ -17,7 +17,7 @@
 }
 
 .brand {
-  font-family: var(--font-display);
+  font-family: 'Cinzel', serif;
   font-weight: 800;
   letter-spacing: 0.12em;
   font-size: 1.2rem;
@@ -33,7 +33,7 @@
 .back-btn {
   color: var(--fg);
   text-decoration: none;
-  font-family: var(--font-mono);
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -74,7 +74,7 @@
 }
 
 .title-section .video-type {
-  font-family: var(--font-mono);
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: #ccc;
   margin-bottom: 10px;
@@ -82,7 +82,7 @@
 }
 
 .title-section .project-title {
-  font-family: var(--font-display);
+  font-family: 'Cinzel', serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -305,7 +305,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-mono);
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
   transition: all 0.3s ease;
@@ -388,7 +388,7 @@
 }
 
 .section-title {
-  font-family: var(--font-display);
+  font-family: 'Cinzel', serif;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -409,6 +409,7 @@
 }
 
 .about-text {
+  font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   line-height: 1.8;
   color: #ccc;
