@@ -243,6 +243,25 @@
   line-height: 0.9;
 }
 
+/* Style spécifique pour la section principale 815 BINKS */
+.video-main .project-name {
+  color: #00ff66;
+  text-shadow: 0 0 30px rgba(0, 255, 102, 0.6);
+  background: linear-gradient(45deg, #00ff66, #00cc52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.video-main .project-number {
+  color: #00ff66;
+  text-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+  background: linear-gradient(45deg, #00ff66, #00cc52);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .project-artists {
   font-family: var(--font-mono);
   font-size: 1.1rem;
@@ -287,6 +306,7 @@
   background: white;
   color: black;
 }
+
 
 .arrow {
   font-size: 1.2rem;
@@ -646,15 +666,14 @@ html {
 }
 
 #crimshot-section .project-name {
-  color: #ff6b6b;
-  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+  color: #ff4757;
+  text-shadow: 0 0 30px rgba(255, 71, 87, 0.6);
+  background: linear-gradient(45deg, #ff4757, #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-#crimshot-section .explore-btn:hover {
-  background: #ff6b6b;
-  border-color: #ff6b6b;
-  color: white;
-}
 
 /* ANYONE Section Styles */
 #anyone-section {
@@ -667,11 +686,13 @@ html {
 }
 
 #anyone-section .year {
-  color: #888;
+  color: #fff;
+  opacity: 0.9;
 }
 
 #anyone-section .video-type {
-  color: #aaa;
+  color: #fff;
+  opacity: 0.8;
 }
 
 #anyone-section .project-number {
@@ -679,6 +700,27 @@ html {
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+}
+
+#anyone-section .project-name {
+  color: #00d4ff;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.9;
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+  background: linear-gradient(45deg, #00d4ff, #0099cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#anyone-section .project-number {
+  color: #00d4ff;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  background: linear-gradient(45deg, #00d4ff, #0099cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 #anyone-section .artist {
@@ -704,11 +746,6 @@ html {
   transition: all 0.3s ease;
 }
 
-#anyone-section .explore-btn:hover {
-  background: #fff;
-  border-color: #fff;
-  color: #1a1a1a;
-}
 
 /* MELO Section Styles */
 #melo-section {
@@ -721,11 +758,13 @@ html {
 }
 
 #melo-section .year {
-  color: #999;
+  color: #fff;
+  opacity: 0.9;
 }
 
 #melo-section .video-type {
-  color: #bbb;
+  color: #fff;
+  opacity: 0.8;
 }
 
 #melo-section .project-number {
@@ -736,36 +775,33 @@ html {
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
+#melo-section .project-name {
+  color: #ff9ff3;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 0.9;
+  text-shadow: 0 0 30px rgba(255, 159, 243, 0.6);
+  background: linear-gradient(45deg, #ff9ff3, #f368e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#melo-section .project-number {
+  color: #ff9ff3;
+  text-shadow: 0 0 20px rgba(255, 159, 243, 0.5);
+  background: linear-gradient(45deg, #ff9ff3, #f368e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 #melo-section .artist {
   color: #fff;
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-#melo-section .explore-btn {
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-#melo-section .explore-btn:hover {
-  background: #fff;
-  border-color: #fff;
-  color: #0a0a0a;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-}
 
 
 /* Responsive adjustments for video sections */
