@@ -199,25 +199,29 @@ p {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 20px clamp(16px, 3vw, 32px);
+  padding: clamp(12px, 3vw, 20px) clamp(16px, 3vw, 32px);
   display: flex;
   align-items: center;
-  gap: 28px;
+  justify-content: space-between;
+  gap: clamp(16px, 4vw, 28px);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
   backdrop-filter: blur(10px);
+  min-height: 60px;
 }
 
 .brand {
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: 0.12em;
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  flex-shrink: 0;
 }
 
 .nav {
   display: flex;
-  gap: 18px;
+  gap: clamp(12px, 3vw, 18px);
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .nav a {
@@ -225,8 +229,11 @@ p {
   text-decoration: none;
   font-family: var(--font-mono);
   font-weight: 500;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   transition: all 0.3s ease;
   position: relative;
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 
 .nav a::after {
@@ -397,6 +404,92 @@ p {
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .nav {
+    gap: clamp(8px, 2vw, 12px);
+  }
+
+  .nav a {
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: clamp(8px, 2vw, 12px) clamp(12px, 2.5vw, 16px);
+    min-height: 55px;
+    gap: clamp(12px, 3vw, 20px);
+  }
+
+  .brand {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+  }
+
+  .nav {
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+
+  .nav a {
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    padding: 2px 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    gap: clamp(4px, 1vw, 8px);
+  }
+
+  .nav a {
+    font-size: clamp(0.65rem, 1.6vw, 0.75rem);
+    padding: 1px 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 12px);
+    min-height: 50px;
+    gap: clamp(8px, 2vw, 16px);
+  }
+
+  .brand {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+
+  .nav {
+    gap: clamp(3px, 1vw, 6px);
+  }
+
+  .nav a {
+    font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+    padding: 1px 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    padding: clamp(4px, 1vw, 6px) clamp(6px, 1.5vw, 8px);
+    min-height: 45px;
+    gap: clamp(6px, 1.5vw, 12px);
+  }
+
+  .brand {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+
+  .nav {
+    gap: clamp(2px, 0.8vw, 4px);
+  }
+
+  .nav a {
+    font-size: clamp(0.55rem, 1.3vw, 0.65rem);
+    padding: 1px;
+  }
 }
 
 /* Print styles */

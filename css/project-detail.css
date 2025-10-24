@@ -14,14 +14,16 @@
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 60px;
 }
 
 .brand {
   font-family: 'Cinzel', serif;
   font-weight: 600;
   letter-spacing: 0.12em;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   color: var(--fg);
+  flex-shrink: 0;
 }
 
 .nav-center {
@@ -29,8 +31,9 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: clamp(8px, 2vw, 18px);
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .nav-center a {
@@ -38,8 +41,11 @@
   text-decoration: none;
   font-family: var(--font-mono);
   font-weight: 500;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   transition: all 0.3s ease;
   position: relative;
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 
 .nav-center a::after {
@@ -74,7 +80,8 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(12px, 3vw, 20px);
+  flex-shrink: 0;
 }
 
 .back-btn {
@@ -82,9 +89,11 @@
   text-decoration: none;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
   transition: all 0.3s ease;
   position: relative;
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 
 .back-btn:hover {
@@ -696,4 +705,96 @@
   animation: none !important;
   transform: none !important;
   transition: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .nav-center {
+    gap: clamp(6px, 1.5vw, 12px);
+  }
+
+  .nav-center a {
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 16px;
+    min-height: 55px;
+  }
+
+  .brand {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+  }
+
+  .nav-center {
+    gap: clamp(4px, 1vw, 8px);
+  }
+
+  .nav-center a {
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    padding: 2px 4px;
+  }
+
+  .nav {
+    gap: clamp(8px, 2vw, 16px);
+  }
+
+  .back-btn {
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    padding: 2px 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-center {
+    display: none;
+    /* Masquer la nav centrale sur très petits écrans */
+  }
+
+  .header {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px 12px;
+    min-height: 50px;
+  }
+
+  .brand {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+
+  .nav {
+    gap: clamp(6px, 1.5vw, 12px);
+  }
+
+  .back-btn {
+    font-size: clamp(0.65rem, 1.6vw, 0.75rem);
+    padding: 1px 3px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    padding: 6px 8px;
+    min-height: 45px;
+  }
+
+  .brand {
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+
+  .nav {
+    gap: clamp(4px, 1vw, 8px);
+  }
+
+  .back-btn {
+    font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+    padding: 1px 2px;
+  }
 }
