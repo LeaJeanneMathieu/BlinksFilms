@@ -18,9 +18,9 @@
 
 .brand {
   font-family: 'Cinzel', serif;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.12em;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: var(--fg);
 }
 
@@ -500,7 +500,7 @@
   }
 
   .brand {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .back-btn {
