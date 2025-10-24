@@ -75,6 +75,12 @@ function initProjectsPage() {
   // Initialize scroll effects
   initScrollEffects();
 
+  // Initialize enhanced scroll animations
+  initEnhancedScrollAnimations();
+
+  // Initialize text animations
+  initTextAnimations();
+
   // Initialize CRIMSHOT section
   initCrimshotSection();
 
@@ -262,6 +268,47 @@ function updateProjectDisplay() {
     el.offsetHeight; // Trigger reflow
     el.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
   });
+
+  // Enhanced animation for all elements
+  elementsToAnimate.forEach((el, index) => {
+    el.style.animation = 'none';
+    el.offsetHeight; // Trigger reflow
+    el.style.animation = `fadeInUpScroll 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.15}s both`;
+  });
+
+  // Special animation for project title elements
+  if (numberEl) {
+    numberEl.style.opacity = '0';
+    numberEl.style.transform = 'translateX(-50px)';
+    setTimeout(() => {
+      numberEl.style.opacity = '1';
+      numberEl.style.transform = 'translateX(0)';
+      numberEl.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 300);
+  }
+
+  if (nameEl) {
+    nameEl.style.opacity = '0';
+    nameEl.style.transform = 'translateX(50px)';
+    setTimeout(() => {
+      nameEl.style.opacity = '1';
+      nameEl.style.transform = 'translateX(0)';
+      nameEl.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 400);
+  }
+
+  // Enhanced animation for project title elements
+  if (numberEl) {
+    numberEl.style.animation = 'none';
+    numberEl.offsetHeight; // Trigger reflow
+    numberEl.style.animation = `slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both`;
+  }
+
+  if (nameEl) {
+    nameEl.style.animation = 'none';
+    nameEl.offsetHeight; // Trigger reflow
+    nameEl.style.animation = `slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both`;
+  }
 }
 
 // Keyboard navigation
@@ -300,20 +347,340 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// Scroll effects for video sections
-function initScrollEffects() {
+// Initialize text animations with scroll effects
+function initTextAnimations() {
+  // Set initial state for all video info and controls
+  const allVideoInfos = document.querySelectorAll('.video-info');
+  const allVideoControls = document.querySelectorAll('.video-controls');
+
+  // Add scroll-hidden class to all elements except the first one
+  allVideoInfos.forEach((info, index) => {
+    if (index > 0) { // Skip the first one (main video)
+      info.classList.add('scroll-hidden');
+    }
+  });
+
+  allVideoControls.forEach((controls, index) => {
+    if (index > 0) { // Skip the first one (main video)
+      controls.classList.add('scroll-hidden');
+    }
+  });
+
+  // Add special animation for project titles
+  const allProjectTitles = document.querySelectorAll('.project-title');
+  allProjectTitles.forEach(title => {
+    const number = title.querySelector('.project-number');
+    const name = title.querySelector('.project-name');
+
+    if (number) {
+      number.style.opacity = '0';
+      number.style.transform = 'translateX(-50px)';
+    }
+
+    if (name) {
+      name.style.opacity = '0';
+      name.style.transform = 'translateX(50px)';
+    }
+  });
+
+  // Initialize scroll-based text animations
+  initScrollTextAnimations();
+
+  // Make sure the first video section is visible immediately
+  const mainVideoInfo = document.querySelector('.video-main .video-info');
+  const mainVideoControls = document.querySelector('.video-main .video-controls');
+  const mainVideoOverlay = document.querySelector('.video-main .video-overlay');
+
+  if (mainVideoInfo) {
+    mainVideoInfo.classList.add('animate');
+  }
+  if (mainVideoControls) {
+    mainVideoControls.classList.add('animate');
+  }
+  if (mainVideoOverlay) {
+    mainVideoOverlay.classList.add('fade-in');
+  }
+}
+
+// Initialize scroll-based text animations
+function initScrollTextAnimations() {
+  // Create observer for text elements
+  const textObserverOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -10% 0px'
+  };
+
+  const textObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+
+        if (element.classList.contains('video-info')) {
+          element.classList.remove('scroll-hidden');
+          element.classList.add('animate');
+          animateTextElementsEnhanced(element);
+
+          // Also animate the overlay for this section
+          const section = element.closest('.video-section, .video-main');
+          if (section) {
+            const overlay = section.querySelector('.video-overlay');
+            if (overlay) {
+              overlay.classList.add('fade-in');
+            }
+          }
+        } else if (element.classList.contains('video-controls')) {
+          element.classList.remove('scroll-hidden');
+          element.classList.add('animate');
+          animateControlElementsEnhanced(element);
+        }
+
+        textObserver.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, textObserverOptions);
+
+  // Observe all video info elements
+  const allVideoInfos = document.querySelectorAll('.video-info');
+  allVideoInfos.forEach(info => {
+    textObserver.observe(info);
+  });
+
+  // Also observe control elements
+  const allVideoControls = document.querySelectorAll('.video-controls');
+  allVideoControls.forEach(controls => {
+    textObserver.observe(controls);
+  });
+}
+
+// Animate text elements with staggered delays
+function animateTextElements(videoInfo) {
+  // Get specific elements in order
+  const year = videoInfo.querySelector('.year');
+  const videoType = videoInfo.querySelector('.video-type');
+  const projectTitle = videoInfo.querySelector('.project-title');
+  const projectArtists = videoInfo.querySelector('.project-artists');
+
+  // Animate elements in sequence
+  const elements = [year, videoType, projectTitle, projectArtists].filter(Boolean);
+
+  elements.forEach((element, index) => {
+    if (element) {
+      // Reset any existing animations
+      element.style.animation = 'none';
+      element.offsetHeight; // Trigger reflow
+
+      // Apply staggered animation
+      const delay = index * 0.2;
+      element.style.animation = `fadeInUpScroll 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s both`;
+    }
+  });
+
+  // Special handling for project title elements
+  if (projectTitle) {
+    const number = projectTitle.querySelector('.project-number');
+    const name = projectTitle.querySelector('.project-name');
+
+    if (number) {
+      number.style.animation = 'none';
+      number.offsetHeight; // Trigger reflow
+      number.style.animation = `slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both`;
+    }
+
+    if (name) {
+      name.style.animation = 'none';
+      name.offsetHeight; // Trigger reflow
+      name.style.animation = `slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both`;
+    }
+  }
+}
+
+// Enhanced text animation with better timing
+function animateTextElementsEnhanced(videoInfo) {
+  // Get specific elements in order
+  const year = videoInfo.querySelector('.year');
+  const videoType = videoInfo.querySelector('.video-type');
+  const projectTitle = videoInfo.querySelector('.project-title');
+  const projectArtists = videoInfo.querySelector('.project-artists');
+
+  // Animate elements in sequence with better timing
+  const elements = [year, videoType, projectTitle, projectArtists].filter(Boolean);
+
+  elements.forEach((element, index) => {
+    if (element) {
+      // Reset any existing animations
+      element.style.animation = 'none';
+      element.offsetHeight; // Trigger reflow
+
+      // Apply staggered animation with faster timing
+      const delay = index * 0.08;
+      element.style.animation = `fadeInUpScroll 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s both`;
+    }
+  });
+
+  // Special handling for project title elements with better timing
+  if (projectTitle) {
+    const number = projectTitle.querySelector('.project-number');
+    const name = projectTitle.querySelector('.project-name');
+
+    if (number) {
+      number.style.animation = 'none';
+      number.offsetHeight; // Trigger reflow
+      number.style.animation = `slideInFromLeft 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both`;
+    }
+
+    if (name) {
+      name.style.animation = 'none';
+      name.offsetHeight; // Trigger reflow
+      name.style.animation = `slideInFromRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.25s both`;
+    }
+  }
+}
+
+// Animate control elements with staggered delays
+function animateControlElements(videoControls) {
+  const exploreBtn = videoControls.querySelector('.explore-btn');
+
+  if (exploreBtn) {
+    // Reset any existing animations
+    exploreBtn.style.animation = 'none';
+    exploreBtn.offsetHeight; // Trigger reflow
+
+    // Apply animation with delay
+    const delay = 0.8; // Start after text elements
+    exploreBtn.style.animation = `fadeInUpScroll 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s both`;
+  }
+}
+
+// Enhanced control animation with better timing
+function animateControlElementsEnhanced(videoControls) {
+  const exploreBtn = videoControls.querySelector('.explore-btn');
+
+  if (exploreBtn) {
+    // Reset any existing animations
+    exploreBtn.style.animation = 'none';
+    exploreBtn.offsetHeight; // Trigger reflow
+
+    // Apply animation with faster timing
+    const delay = 0.3; // Start after text elements
+    exploreBtn.style.animation = `fadeInUpScroll 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s both`;
+  }
+}
+
+// Animate overlay elements with fade-in effect
+function animateOverlayElements(videoOverlay) {
+  // Add a subtle fade-in effect to the overlay
+  videoOverlay.style.opacity = '0';
+  videoOverlay.style.transition = 'opacity 0.8s ease-out';
+
+  setTimeout(() => {
+    videoOverlay.style.opacity = '1';
+  }, 100);
+}
+
+// Enhanced overlay animation with faster timing
+function animateOverlayElementsEnhanced(videoOverlay) {
+  // Add a subtle fade-in effect to the overlay with faster timing
+  videoOverlay.style.opacity = '0';
+  videoOverlay.style.transition = 'opacity 0.4s ease-out';
+
+  setTimeout(() => {
+    videoOverlay.style.opacity = '1';
+  }, 25);
+}
+
+// Enhanced scroll-based animation system
+function initEnhancedScrollAnimations() {
+  // Create a more sophisticated intersection observer
   const observerOptions = {
-    threshold: 0.3,
+    threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
     rootMargin: '0px 0px -10% 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const section = entry.target;
+      const videoInfo = section.querySelector('.video-info');
+      const videoControls = section.querySelector('.video-controls');
+      const videoOverlay = section.querySelector('.video-overlay');
+
+      // Calculate animation progress based on intersection ratio
+      const progress = entry.intersectionRatio;
+
+      if (progress > 0.2) {
+        section.classList.add('animate');
+        section.classList.add('in-view');
+
+        // Animate elements based on progress
+        if (videoInfo) {
+          videoInfo.classList.remove('scroll-hidden');
+          videoInfo.classList.add('animate');
+          animateTextElementsEnhanced(videoInfo);
+        }
+        if (videoControls) {
+          videoControls.classList.remove('scroll-hidden');
+          videoControls.classList.add('animate');
+          animateControlElementsEnhanced(videoControls);
+        }
+        if (videoOverlay) {
+          videoOverlay.classList.add('fade-in');
+          animateOverlayElementsEnhanced(videoOverlay);
+        }
+
+        // Also animate the overlay for this section
+        const overlay = entry.target.querySelector('.video-overlay');
+        if (overlay) {
+          overlay.classList.add('fade-in');
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all video sections
+  const allVideoSections = document.querySelectorAll('.video-main, .video-section');
+  allVideoSections.forEach(section => {
+    observer.observe(section);
+  });
+}
+
+// Scroll effects for video sections
+function initScrollEffects() {
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -5% 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
       const video = entry.target.querySelector('iframe');
+      const videoInfo = entry.target.querySelector('.video-info');
+      const videoControls = entry.target.querySelector('.video-controls');
+      const videoOverlay = entry.target.querySelector('.video-overlay');
 
       if (entry.isIntersecting) {
         entry.target.classList.add('animate');
         entry.target.classList.add('in-view');
+
+        // Animate text elements
+        if (videoInfo) {
+          videoInfo.classList.remove('scroll-hidden');
+          videoInfo.classList.add('animate');
+          animateTextElementsEnhanced(videoInfo);
+        }
+        if (videoControls) {
+          videoControls.classList.remove('scroll-hidden');
+          videoControls.classList.add('animate');
+          animateControlElementsEnhanced(videoControls);
+        }
+        if (videoOverlay) {
+          videoOverlay.classList.add('fade-in');
+          animateOverlayElementsEnhanced(videoOverlay);
+        }
+
+        // Also animate the overlay for this section
+        const overlay = entry.target.querySelector('.video-overlay');
+        if (overlay) {
+          overlay.classList.add('fade-in');
+        }
 
         // Auto-play video when in view
         if (video) {
