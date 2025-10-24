@@ -365,7 +365,7 @@
 /* Video Controls */
 .video-controls {
   position: absolute;
-  bottom: 8%;
+  bottom: 12%;
   right: 5%;
   display: flex;
   justify-content: center;
@@ -527,7 +527,7 @@
   }
 
   .video-controls {
-    bottom: 6%;
+    bottom: 10%;
     right: 3%;
   }
 
@@ -592,7 +592,7 @@
   }
 
   .video-controls {
-    bottom: 4%;
+    bottom: 8%;
     right: 2%;
   }
 
@@ -969,6 +969,10 @@ html {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
+#crimshot-section .video-controls {
+  bottom: 15%;
+}
+
 
 /* ANYONE Section Styles */
 #anyone-section {
@@ -1018,6 +1022,10 @@ html {
   font-size: 1.2rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
+}
+
+#anyone-section .video-controls {
+  bottom: 15%;
 }
 
 #anyone-section .explore-btn {
@@ -1133,7 +1141,7 @@ html {
   }
 
   .video-section .video-controls {
-    bottom: 8%;
+    bottom: 12%;
     right: 3%;
   }
 
