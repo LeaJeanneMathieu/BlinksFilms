@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BINKSFILMS — Administration</title>
+  <meta name="description" content="Interface d'administration pour gérer les clips">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body data-page="admin">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">BINKSFILMS</div>
+    <nav class="nav-center">
+      <a href="/pages/home.html">ACCUEIL</a>
+      <a href="/pages/projects.html">PROJETS</a>
+      <a href="/pages/contact.html">CONTACT</a>
+      <a href="/pages/admin.html" class="active">ADMIN</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <div class="admin-container">
+      <h1 class="admin-title">Gestion des Clips</h1>
+
+      <!-- Success/Error Messages -->
+      <div id="messageBox" class="message-box" style="display: none;"></div>
+
+      <!-- Add Clip Form -->
+      <section class="admin-section">
+        <h2 class="section-title">Ajouter un nouveau clip</h2>
+        <form id="addClipForm" class="clip-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clipTitle">Titre du clip *</label>
+              <input type="text" id="clipTitle" name="title" required placeholder="Ex: MIKADO RICO">
+            </div>
+
+            <div class="form-group">
+              <label for="clipArtist">Artiste *</label>
+              <input type="text" id="clipArtist" name="artist" required placeholder="Ex: PERPRE">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="clipYear">Année *</label>
+              <input type="text" id="clipYear" name="year" required placeholder="Ex: 2024">
+            </div>
+
+            <div class="form-group">
+              <label for="clipYoutubeId">ID YouTube *</label>
+              <input type="text" id="clipYoutubeId" name="youtubeId" required placeholder="Ex: 18006YbHjKA">
+              <small class="form-help">L'ID est la partie après "v=" dans l'URL YouTube</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="clipThumbnail">Miniature (optionnel)</label>
+            <input type="text" id="clipThumbnail" name="thumbnail" placeholder="URL de l'image ou chemin local">
+            <small class="form-help">Laisser vide pour utiliser la miniature YouTube automatique</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Ajouter le clip</button>
+        </form>
+      </section>
+
+      <!-- Clips List -->
+      <section class="admin-section">
+        <h2 class="section-title">
+          Tous les clips (<span id="clipsCount">0</span>)
+        </h2>
+        <div id="clipsList" class="clips-list">
+          <!-- Clips will be dynamically generated -->
+        </div>
+      </section>
+
+      <!-- Actions -->
+      <section class="admin-section">
+        <h2 class="section-title">Actions</h2>
+        <div class="actions-bar">
+          <button id="exportBtn" class="btn btn-secondary">Exporter en JSON</button>
+          <button id="clearBtn" class="btn btn-danger">Réinitialiser</button>
+          <a href="/pages/projects.html" class="btn btn-success">Voir les projets</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="/js/main.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+
+</html>

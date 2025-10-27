@@ -1,0 +1,39 @@
+{
+    "clips": [
+        {
+            "title": "CRIMSHOT",
+            "artist": "BINSFILMS",
+            "year": "2024",
+            "youtubeId": "18006YbHjKA",
+            "thumbnail": "https://i.ytimg.com/vi/_4rAF1_ZlJE/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYACpAWKAgwIABABGBMgWyh_MA8=&rs=AOn4CLCBW0OLbmp-2lf6jI5kJVjFULyukg"
+        },
+        {
+            "title": "KHRIS K",
+            "artist": "NADA",
+            "year": "2024",
+            "youtubeId": "_4rAF1_ZlJE",
+            "thumbnail": "/assets/images/0001.png"
+        },
+        {
+            "title": "SHINO",
+            "artist": "BIONA",
+            "year": "2024",
+            "youtubeId": "VJFCwBSMXd4",
+            "thumbnail": "/assets/images/0001.png"
+        },
+        {
+            "title": "MELO",
+            "artist": "UN BANDIT",
+            "year": "2024",
+            "youtubeId": "nkntwx-ZAMI",
+            "thumbnail": "://i.ytimg.com/vi/nkntwx-ZAMI/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEQgYyhlMA8=&rs=AOn4CLA1afOmVzmBnCZbxlOhttpswayPtfF0R4Q"
+        },
+        {
+            "title": "NOUVEAU CLIP",
+            "artist": "NOUVEL ARTISTE",
+            "year": "2024",
+            "youtubeId": "VOTRE_ID_YOUTUBE",
+            "thumbnail": "/assets/images/votre-image.png"
+        }
+    ]
+}

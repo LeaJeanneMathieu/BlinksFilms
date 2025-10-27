@@ -37,45 +37,10 @@
       <a href="/pages/home.html">ACCUEIL</a>
       <a href="/pages/projects.html" class="active">PROJETS</a>
       <a href="/pages/contact.html">CONTACT</a>
+      <a href="/pages/admin.html">ADMIN</a>
     </nav>
     <nav class="nav">
-      <div class="nav-dropdown">
-        <button class="nav-dropdown-btn" id="projectDropdown">
-          815 BINKS
-          <span class="dropdown-arrow">▼</span>
-        </button>
-        <div class="nav-dropdown-content" id="projectDropdownContent">
-          <a href="#" data-project="815" class="project-item active">
-            <div class="project-thumbnail">
-              <img src="/assets/images/covermenu-binks.png" alt="815 BINKS cover">
-            </div>
-            <span class="project-title">815 BINKS</span>
-          </a>
-          <a href="#" data-project="crimshot" class="project-item">
-            <div class="project-thumbnail">
-              <img src="/assets/images/covermenu-crim.png" alt="CRIMSHOT cover">
-            </div>
-            <span class="project-title">CRIMSHOT</span>
-          </a>
-          <a href="#" data-project="melo" class="project-item">
-            <div class="project-thumbnail">
-              <img src="/assets/images/covermenu-melo.png" alt="MELO cover">
-            </div>
-            <span class="project-title">MELO</span>
-          </a>
-          <a href="#" data-project="anyone" class="project-item">
-            <div class="project-thumbnail">
-              <img src="/assets/images/covermenu-anyone.png" alt="ANYONE cover">
-            </div>
-            <span class="project-title">ANYONE</span>
-          </a>
-        </div>
-      </div>
-      <button class="nav-menu-btn" id="navMenuBtn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un clip...">
     </nav>
   </header>
 
@@ -83,30 +48,22 @@
   <main class="video-main">
     <div class="video-container">
       <iframe id="mainVideo"
-        src="https://www.youtube.com/embed/18006YbHjKA?autoplay=1&mute=1&playsinline=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=18006YbHjKA&enablejsapi=1&cc_load_policy=0&start=0&end=0&wmode=opaque&origin=https://binsfilms.art"
+        src="https://www.youtube.com/embed/YWkD-JxRiAg?autoplay=1&mute=1&playsinline=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=YWkD-JxRiAg&enablejsapi=1&cc_load_policy=0&start=0&end=0&wmode=opaque&origin=https://binsfilms.art&mute=1&disablekb=1&iv_load_policy=3&fs=0&playsinline=1"
         title="BINKSFILMS Project Video" frameborder="0"
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen">
       </iframe>
 
       <!-- Video Overlay Content -->
       <div class="video-overlay">
-        <!-- Year at top of video -->
-        <div class="video-year-top">2024</div>
+        <!-- Category Menu -->
+        <nav class="category-menu">
+          <a href="#" class="category-item active" data-category="clip">CLIP</a>
+          <a href="#" class="category-item" data-category="interview">INTERVIEW</a>
+          <a href="#" class="category-item" data-category="session">SESSION STUDIO</a>
+        </nav>
 
-        <div class="video-info">
-          <div class="video-type">Clip vidéo</div>
-          <div class="project-title">
-            <div class="project-number">815</div>
-            <div class="project-name">BINKS</div>
-          </div>
-          <div class="project-artists">
-            <span class="artist">MIKADO</span>
-            <span class="separator">—</span>
-            <span class="artist">X</span>
-            <span class="separator">—</span>
-            <span class="artist">RICO</span>
-          </div>
-        </div>
+        <!-- Centered Title -->
+        <div class="hero-title">LES BEAUX ARTS DU GHETTO</div>
 
         <div class="video-controls">
           <button class="explore-btn" id="exploreBtn">
@@ -118,114 +75,14 @@
     </div>
   </main>
 
-  <!-- Second Video Section - CRIMSHOT -->
-  <section class="video-section" id="crimshot-section">
-    <div class="video-container">
-      <iframe id="crimshotVideo"
-        src="https://www.youtube.com/embed/_4rAF1_ZlJE?autoplay=1&mute=1&playsinline=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=_4rAF1_ZlJE&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&cc_load_policy=0&start=0&end=0&wmode=opaque&origin=https://binsfilms.art"
-        title="CRIMSHOT Project Video" frameborder="0"
-        allow="autoplay; encrypted-media; picture-in-picture; fullscreen">
-      </iframe>
-
-      <!-- Video Overlay Content -->
-      <div class="video-overlay">
-        <!-- Year at top of video -->
-        <div class="video-year-top">2024</div>
-
-        <div class="video-info">
-          <div class="video-type">Clip vidéo</div>
-          <div class="project-title">
-            <div class="project-name">CRIMSHOT</div>
-          </div>
-          <div class="project-artists">
-            <span class="artist">CRIMSHOT</span>
-          </div>
-        </div>
-
-        <div class="video-controls">
-          <button class="explore-btn" id="crimshotExploreBtn">
-            EXPLORE
-            <span class="arrow">→</span>
-          </button>
-        </div>
-      </div>
+  <!-- Clips Grid Section -->
+  <section class="clips-section">
+    <h2 class="section-title">TOUS LES CLIPS</h2>
+    <div class="clips-grid" id="clipsGrid">
+      <!-- Clips will be dynamically generated -->
     </div>
   </section>
 
-  <!-- Third Video Section - ANYONE -->
-  <section class="video-section" id="anyone-section">
-    <div class="video-container">
-      <iframe
-        src="https://www.youtube.com/embed/VJFCwBSMXd4?autoplay=1&mute=1&controls=0&loop=1&playlist=VJFCwBSMXd4&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&cc_load_policy=0&start=0&end=0&wmode=opaque&origin=https://binsfilms.art"
-        title="ANYONE Project Video" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen">
-      </iframe>
-
-      <!-- Video Overlay Content -->
-      <div class="video-overlay">
-        <!-- Year at top of video -->
-        <div class="video-year-top">2024</div>
-
-        <div class="video-info">
-          <div class="video-type">Clip vidéo</div>
-          <div class="project-title">
-            <div class="project-number">ANYONE</div>
-          </div>
-          <div class="project-artists">
-            <span class="artist">T55A</span>
-          </div>
-        </div>
-
-        <div class="video-controls">
-          <button class="explore-btn" id="anyoneExploreBtn">
-            EXPLORE
-            <span class="arrow">→</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fourth Video Section - MELO -->
-  <section class="video-section" id="melo-section">
-    <div class="video-container">
-      <iframe
-        src="https://www.youtube.com/embed/nkntwx-ZAMI?autoplay=1&mute=1&controls=0&loop=1&playlist=nkntwx-ZAMI&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&cc_load_policy=0&start=0&end=0&wmode=opaque&origin=https://binsfilms.art"
-        title="MELO Project Video" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen">
-      </iframe>
-
-      <!-- Video Overlay Content -->
-      <div class="video-overlay">
-        <!-- Year at top of video -->
-        <div class="video-year-top">2024</div>
-
-        <div class="video-info">
-          <div class="video-type">Clip vidéo</div>
-          <div class="project-title">
-            <div class="project-number">MELO</div>
-          </div>
-          <div class="project-artists">
-            <span class="artist">UN BANDIT</span>
-          </div>
-        </div>
-
-        <div class="video-controls">
-          <button class="explore-btn" id="meloExploreBtn">
-            EXPLORE
-            <span class="arrow">→</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Navigation Menu Overlay -->
-  <div class="nav-overlay" id="navOverlay">
-    <nav class="nav-overlay-content">
-      <a href="/pages/home.html">Accueil</a>
-      <a href="/pages/projects.html" class="active">Projets</a>
-      <a href="/pages/contact.html">Contact</a>
-    </nav>
-  </div>
 
   <!-- Scripts -->
   <script src="/js/main.js"></script>

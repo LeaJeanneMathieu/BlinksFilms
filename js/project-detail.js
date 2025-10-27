@@ -62,6 +62,7 @@ const projects = {
 
 let currentProject = '815';
 let isVideoPlaying = false;
+let currentClipData = null;
 
 // Initialize project detail page when DOM is ready
 if (document.readyState === 'loading') {
@@ -70,13 +71,22 @@ if (document.readyState === 'loading') {
   initProjectDetailPage();
 }
 
-function initProjectDetailPage() {
+async function initProjectDetailPage() {
   // Get project from URL parameters
   const urlParams = new URLSearchParams(window.location.search);
-  const projectId = urlParams.get('project') || '815';
+  const projectId = urlParams.get('project');
+  const clipIndex = urlParams.get('clip');
 
-  // Set current project
-  currentProject = projectId;
+  // Load clips if clip index is provided
+  if (clipIndex !== null) {
+    await loadClipFromIndex(clipIndex);
+  } else if (projectId) {
+    // Set current project from predefined projects
+    currentProject = projectId;
+  } else {
+    // Default to first project
+    currentProject = '815';
+  }
 
   // Initialize project data
   initProjectData();
@@ -89,6 +99,57 @@ function initProjectDetailPage() {
 
   // Initialize smooth scrolling
   initSmoothScrolling();
+}
+
+// Load clip from localStorage or JSON by index
+async function loadClipFromIndex(index) {
+  let clips = [];
+
+  // First, try to load from localStorage
+  const stored = localStorage.getItem('binsfilms_clips');
+  if (stored) {
+    try {
+      clips = JSON.parse(stored);
+    } catch (error) {
+      console.error('Error parsing stored clips:', error);
+    }
+  }
+
+  // If no clips in localStorage, load from JSON file
+  if (clips.length === 0) {
+    try {
+      const response = await fetch('/data/clips.json');
+      const data = await response.json();
+      clips = data.clips || [];
+    } catch (error) {
+      console.error('Error loading clips from JSON:', error);
+    }
+  }
+
+  // Get the clip at the specified index
+  if (clips[index]) {
+    currentClipData = clips[index];
+    
+    // Check if this is a known project with existing assets
+    const projectId = currentClipData.title.toLowerCase().replace(/\s+/g, '');
+    let projectConfig = null;
+    
+    // Check if project exists in predefined projects
+    if (projects[projectId]) {
+      projectConfig = projects[projectId];
+    }
+    
+    // Convert clip data to project format
+    projects[`clip_${index}`] = {
+      title: currentClipData.title,
+      videoId: currentClipData.youtubeId,
+      coverImage: projectConfig?.coverImage || currentClipData.thumbnail || `https://img.youtube.com/vi/${currentClipData.youtubeId}/maxresdefault.jpg`,
+      aboutText: projectConfig?.aboutText || `<strong>${currentClipData.title}</strong> par <strong>${currentClipData.artist}</strong>. Réalisé en ${currentClipData.year}. Un clip qui capture l'essence artistique moderne et la créativité visuelle. Une œuvre qui marie parfaitement la musique et l'image pour offrir une expérience immersive unique.`,
+      galleryImages: projectConfig?.galleryImages || []
+    };
+
+    currentProject = `clip_${index}`;
+  }
 }
 
 function initProjectData() {
@@ -107,20 +168,25 @@ function initProjectData() {
   // Update about text
   const aboutText = document.getElementById('aboutText');
   if (aboutText) {
-    aboutText.textContent = project.aboutText;
+    // Use innerHTML if the text contains HTML tags, otherwise use textContent
+    if (project.aboutText && project.aboutText.includes('<')) {
+      aboutText.innerHTML = project.aboutText;
+    } else {
+      aboutText.textContent = project.aboutText;
+    }
   }
 
   // Update hero image
   const heroImage = document.getElementById('heroImage');
   if (heroImage) {
-    heroImage.src = project.coverImage || project.galleryImages[0];
+    heroImage.src = project.coverImage || (project.galleryImages && project.galleryImages[0]);
     heroImage.alt = `${project.title} Hero Image`;
   }
 
   // Update video thumbnail
   const videoThumbnailImg = document.getElementById('videoThumbnailImg');
   if (videoThumbnailImg) {
-    videoThumbnailImg.src = project.coverImage || project.galleryImages[0];
+    videoThumbnailImg.src = project.coverImage || (project.galleryImages && project.galleryImages[0]);
     videoThumbnailImg.alt = `${project.title} Video Thumbnail`;
   }
 }
@@ -174,6 +240,9 @@ function playVideo() {
     projectVideo.src = videoSrc;
 
     isVideoPlaying = true;
+
+    // Save video ID for the function to work with dynamic clips
+    window.currentProject = project;
   }
 }
 
@@ -211,6 +280,16 @@ function initGallery() {
 
   // Split images between two rows
   const images = project.galleryImages;
+  
+  // If no gallery images, show empty gallery (keep section visible)
+  if (!images || images.length === 0) {
+    galleryRow1.innerHTML = '<div class="empty-gallery">Aucune image disponible</div>';
+    galleryRow2.innerHTML = '';
+    // Initialize scroll effects anyway
+    initGalleryScrollEffects();
+    return;
+  }
+
   const midPoint = Math.ceil(images.length / 2);
 
   // First row - first half of images
