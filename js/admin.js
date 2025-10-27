@@ -82,8 +82,8 @@ async function handleAddClip(e) {
         clips = JSON.parse(stored);
     }
 
-    // Add new clip
-    clips.push(newClip);
+    // Add new clip at the beginning
+    clips.unshift(newClip);
 
     // Save and render
     saveClips(clips);
