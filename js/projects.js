@@ -19,6 +19,9 @@ if (document.readyState === 'loading') {
 }
 
 function initProjectsPage() {
+  // Initialize navigation menu
+  initNavigationMenu();
+
   // Initialize video controls
   initVideoControls();
 
@@ -30,6 +33,36 @@ function initProjectsPage() {
 
   // Initialize search functionality
   initSearch();
+}
+
+// Navigation menu functionality
+function initNavigationMenu() {
+  const menuBtn = document.getElementById('navMenuBtn');
+  const navOverlay = document.getElementById('navOverlay');
+
+  if (!menuBtn || !navOverlay) return;
+
+  menuBtn.addEventListener('click', () => {
+    navOverlay.classList.toggle('show');
+    document.body.style.overflow = navOverlay.classList.contains('show') ? 'hidden' : '';
+  });
+
+  // Close menu when clicking on overlay
+  navOverlay.addEventListener('click', (e) => {
+    if (e.target === navOverlay) {
+      navOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking on links
+  const navLinks = navOverlay.querySelectorAll('a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+  });
 }
 
 // Search functionality
